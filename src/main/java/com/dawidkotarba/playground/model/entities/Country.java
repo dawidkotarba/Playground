@@ -11,8 +11,8 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "COUNTRIES")
-public class Countries implements Serializable {
+@Table(name = "COUNTRY")
+public class Country implements Serializable {
 
     @Id
     @Column(name = "NAME")

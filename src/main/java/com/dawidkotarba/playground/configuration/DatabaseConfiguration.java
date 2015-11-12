@@ -8,12 +8,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Created by Dawid Kotarba on 12.11.2015.
  */
 @Configuration
 @ComponentScan("com.dawidkotarba.playground.model.entities")
+@EnableTransactionManagement
 public class DatabaseConfiguration {
 
     @Bean
