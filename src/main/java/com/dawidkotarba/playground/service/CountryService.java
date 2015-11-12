@@ -26,11 +26,11 @@ public class CountryService {
 
         List<Country> countries = countryDao.getCountries();
 
-        for (Country country : countries) {
+        countries.forEach(country -> {
             CountryDto countryDto = new CountryDto();
             BeanUtils.copyProperties(country, countryDto);
             countryDtos.add(countryDto);
-        }
+        });
 
         return countryDtos;
     }
