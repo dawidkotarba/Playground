@@ -1,6 +1,5 @@
 package com.dawidkotarba.playground.configuration;
 
-import org.h2.jdbcx.JdbcDataSource;
 import org.h2.server.web.WebServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
@@ -30,8 +32,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class DatabaseConfiguration {
 
-    private static final String H2_JDBC_URL_TEMPLATE = "jdbc:h2:~/test";
-
     @Value("classpath:db_create.sql")
     private Resource H2_DB_CREATE_SCRIPT;
 
@@ -40,7 +40,14 @@ public class DatabaseConfiguration {
 
     @Bean
     public DataSource dataSource(Environment env) throws Exception {
-        return createH2DataSource();
+
+        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+        EmbeddedDatabase db = builder
+                .setType(EmbeddedDatabaseType.H2)
+                .addScript("db_create.sql")
+                .addScript("db_data_init.sql")
+                .build();
+        return db;
     }
 
     @Bean
@@ -66,16 +73,6 @@ public class DatabaseConfiguration {
         populator.addScript(H2_DB_CREATE_SCRIPT);
         populator.addScript(H2_DB_DATA_INIT_SCRIPT);
         return populator;
-    }
-
-    private DataSource createH2DataSource() {
-        String jdbcUrl = String.format(H2_JDBC_URL_TEMPLATE, System.getProperty("user.dir"));
-        JdbcDataSource ds = new JdbcDataSource();
-        ds.setURL(jdbcUrl);
-        ds.setUser("sa");
-        ds.setPassword("");
-
-        return ds;
     }
 
     @Bean
@@ -104,8 +101,6 @@ public class DatabaseConfiguration {
 
     Properties jpaProperties() {
         Properties props = new Properties();
-        props.put("hibernate.query.substitutions", "true 'Y', false 'N'");
-        props.put("hibernate.hbm2ddl.auto", "create-drop");
         props.put("hibernate.show_sql", "false");
         props.put("hibernate.format_sql", "true");
 
