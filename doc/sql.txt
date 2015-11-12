@@ -1,0 +1,3 @@
+[Copy db to file]
+SCRIPT NODATA TO 'h2db' --without data
+SCRIPT TO 'h2db'
