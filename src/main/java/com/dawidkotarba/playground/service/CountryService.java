@@ -2,12 +2,9 @@ package com.dawidkotarba.playground.service;
 
 import com.dawidkotarba.playground.dao.CountryDao;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
-import com.dawidkotarba.playground.model.entities.Country;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,17 +18,10 @@ public class CountryService {
     private CountryDao countryDao;
 
     public List<CountryDto> getCountries() {
+        return countryDao.getCountries();
+    }
 
-        List<CountryDto> countryDtos = new ArrayList<>();
-
-        List<Country> countries = countryDao.getCountries();
-
-        countries.forEach(country -> {
-            CountryDto countryDto = new CountryDto();
-            BeanUtils.copyProperties(country, countryDto);
-            countryDtos.add(countryDto);
-        });
-
-        return countryDtos;
+    public List<CountryDto> getCountriesByName(String name) {
+        return countryDao.getCountriesByName(name);
     }
 }
