@@ -1,3 +1,10 @@
+[h2 config]
+Value	Setting
+Driver Class	org.h2.Driver
+JDBC URL	jdbc:h2:mem:testdb
+User Name	sa
+Password	 <blank>
+
 [Copy db to file]
 SCRIPT NODATA TO 'h2db' --without data
 SCRIPT TO 'h2db'
