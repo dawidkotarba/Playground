@@ -5,6 +5,8 @@ import com.dawidkotarba.playground.model.entities.Country;
 import com.mysema.query.jpa.impl.JPAQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,6 +20,7 @@ import static com.dawidkotarba.playground.model.entities.QCountry.country;
  */
 
 @Repository
+@Transactional(propagation = Propagation.REQUIRED)
 public class CountryDao {
 
     @PersistenceContext
