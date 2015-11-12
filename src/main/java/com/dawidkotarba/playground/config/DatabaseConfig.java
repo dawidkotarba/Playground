@@ -1,4 +1,4 @@
-package com.dawidkotarba.playground.configuration;
+package com.dawidkotarba.playground.config;
 
 import org.h2.server.web.WebServlet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-public class DatabaseConfiguration {
+public class DatabaseConfig {
 
     @Value("classpath:db_create.sql")
     private Resource H2_DB_CREATE_SCRIPT;

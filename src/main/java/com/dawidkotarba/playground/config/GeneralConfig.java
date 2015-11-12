@@ -1,4 +1,4 @@
-package com.dawidkotarba.playground.configuration;
+package com.dawidkotarba.playground.config;
 
 import org.springframework.context.annotation.ComponentScan;
 
@@ -7,5 +7,5 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @org.springframework.context.annotation.Configuration
 @ComponentScan("com.dawidkotarba.playground")
-public class Configuration {
+public class GeneralConfig {
 }
