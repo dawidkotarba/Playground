@@ -29,4 +29,15 @@ public class Country implements Serializable {
 
     @Column(name = "CURRENCY")
     private String currency;
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "name='" + name + '\'' +
+                ", language='" + language + '\'' +
+                ", area=" + area +
+                ", population=" + population +
+                ", currency='" + currency + '\'' +
+                '}';
+    }
 }
