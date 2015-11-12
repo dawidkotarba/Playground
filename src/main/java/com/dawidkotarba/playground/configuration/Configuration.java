@@ -13,7 +13,7 @@ public class Configuration {
     @Bean
     ServletRegistrationBean h2servletRegistration() {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
-        registrationBean.addUrlMappings("/h2/*");
+        registrationBean.addUrlMappings("/db/*");
         return registrationBean;
     }
 }
