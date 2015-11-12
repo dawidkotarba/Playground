@@ -1,6 +1,9 @@
+[path]
+http://localhost:8080/db
+
 [h2 config]
 Driver Class	org.h2.Driver
-JDBC URL	jdbc:h2:~/test
+JDBC URL	jdbc:h2:mem:testdb
 User Name	sa
 Password	 <blank>
 
