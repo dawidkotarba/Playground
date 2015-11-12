@@ -7,7 +7,7 @@ public class CountryDto {
 
     private String name;
 
-    private String language;
+    private String capital;
 
     private int area;
 
@@ -23,12 +23,12 @@ public class CountryDto {
         this.name = name;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getCapital() {
+        return capital;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setCapital(String capital) {
+        this.capital = capital;
     }
 
     public int getArea() {

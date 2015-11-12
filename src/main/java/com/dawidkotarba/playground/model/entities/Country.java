@@ -18,8 +18,8 @@ public class Country implements Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "LANGUAGE")
-    private String language;
+    @Column(name = "CAPITAL")
+    private String capital;
 
     @Column(name = "AREA")
     private int area;
@@ -38,12 +38,13 @@ public class Country implements Serializable {
         this.name = name;
     }
 
-    public String getLanguage() {
-        return language;
+
+    public String getCapital() {
+        return capital;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setCapital(String capital) {
+        this.capital = capital;
     }
 
     public int getArea() {
