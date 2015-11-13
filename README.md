@@ -13,6 +13,7 @@ Front-end (todo):
 - build: bower + bulp/grunt (todo)
 - js: AngularJS
 - css: Bootstrap + Less?
+- tests: Karma, Jasmine + Sinon + Chai
 
 Buld & run:
 From main folder:
