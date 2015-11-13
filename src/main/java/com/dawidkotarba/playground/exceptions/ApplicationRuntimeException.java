@@ -33,7 +33,7 @@ public abstract class ApplicationRuntimeException extends RuntimeException {
         init(exceptionType);
     }
 
-    public ApplicationRuntimeException addParams(ExceptionType exceptionType, String... params) {
+    public ApplicationRuntimeException addParams(String... params) {
         this.params = params;
         return this;
     }
