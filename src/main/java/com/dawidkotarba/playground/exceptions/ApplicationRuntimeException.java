@@ -13,27 +13,40 @@ public abstract class ApplicationRuntimeException extends RuntimeException {
     private String[] params;
     private ExceptionType exceptionType;
 
-    private void init() {
+    private void init(ExceptionType exceptionType) {
         uuid = UUID.randomUUID();
+        this.exceptionType = exceptionType;
     }
 
     public ApplicationRuntimeException(ExceptionType exceptionType, String message) {
         super(message);
-        init();
+        init(exceptionType);
     }
 
     public ApplicationRuntimeException(ExceptionType exceptionType, Throwable cause) {
         super(cause);
-        init();
+        init(exceptionType);
     }
 
     public ApplicationRuntimeException(ExceptionType exceptionType, String message, Throwable cause) {
         super(message, cause);
-        init();
+        init(exceptionType);
     }
 
     public ApplicationRuntimeException addParams(ExceptionType exceptionType, String... params) {
         this.params = params;
         return this;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public String[] getParams() {
+        return params;
+    }
+
+    public ExceptionType getExceptionType() {
+        return exceptionType;
     }
 }
