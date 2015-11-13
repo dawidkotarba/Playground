@@ -20,5 +20,5 @@ From main folder:
 2. java -jar build\libs\playground-0.1.0.jar
 
 Pages (assuming Tomcat runs on 8080):
-localhost:8080/db --> H2 console
-localhost:8080/swagger-ui.html --> SwaggerUI
+- localhost:8080/db --> H2 console
+- localhost:8080/swagger-ui.html --> SwaggerUI
