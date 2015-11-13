@@ -36,6 +36,12 @@ public class CountryDao {
         return repackEntities(result);
     }
 
+    public void addCountry(CountryDto countryDto) {
+        Country country = new Country();
+        BeanUtils.copyProperties(countryDto, country);
+        entityManager.persist(country);
+    }
+
     private List<CountryDto> repackEntities(List<Country> source) {
         List<CountryDto> countryDtos = new ArrayList<>();
 

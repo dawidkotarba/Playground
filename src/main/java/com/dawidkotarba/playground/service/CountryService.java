@@ -26,4 +26,8 @@ public class CountryService {
     public List<CountryDto> getCountriesByName(String name) {
         return countryDao.getCountriesByName(name);
     }
+
+    public void addCountry(CountryDto countryDto) {
+        countryDao.addCountry(countryDto);
+    }
 }

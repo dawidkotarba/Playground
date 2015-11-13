@@ -4,10 +4,7 @@ import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,10 @@ public class CountryController {
     @RequestMapping(value = "/countries/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CountryDto> getCountriesByName(@PathVariable String name) {
         return countryService.getCountriesByName(name);
+    }
+
+    @RequestMapping(value = "/countries/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addCountry(@RequestBody CountryDto countryDto) {
+        countryService.addCountry(countryDto);
     }
 }
