@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class RestControllerAdvice {
 
-    @ExceptionHandler
-    public void handle() {
-
-    }
+//    @ExceptionHandler
+//    public void handle() {
+//
+//    }
 }
