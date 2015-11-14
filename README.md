@@ -6,11 +6,11 @@ Tech stack:
 - db: H2
 - JPA: Hibernate with Querydsl
 - server: embedded Tomcat (Spring Boot app)
-- tests: TestNG (todo)
+- tests: TestNG, Mockito
 - doc: SwaggerUI
 
-Front-end (todo):
-- build: bower + bulp/grunt (todo)
+Front-end (todo all):
+- build: bower + bulp/grunt
 - js: AngularJS
 - css: Bootstrap + Less?
 - tests: Karma, Jasmine + Sinon + Chai
