@@ -32,7 +32,7 @@ public class CountryDao {
     }
 
     public List<CountryDto> getCountriesByName(String name) {
-        List<Country> result = new JPAQuery(entityManager).from(country).where(country.name.contains(name)).list(country);
+        List<Country> result = new JPAQuery(entityManager).from(country).where(country.name.containsIgnoreCase(name)).list(country);
         return repackEntities(result);
     }
 
