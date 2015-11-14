@@ -7,7 +7,6 @@ import com.dawidkotarba.playground.service.i18n.LocalizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.MessageFormat;
 import java.util.UUID;
 
 /**
@@ -46,13 +45,6 @@ public class ExceptionConverterService {
     }
 
     private String getLocalizedUserMessage(ExceptionType exceptionType, String[] params) {
-
-        String message = localizationService.getMessage(exceptionType.name());
-
-        if (params != null) {
-            message = MessageFormat.format(message, params);
-        }
-
-        return message;
+        return (params != null) ? localizationService.getMessage(exceptionType.name(), params) : localizationService.getMessage(exceptionType.name());
     }
 }
