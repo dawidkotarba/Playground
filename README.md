@@ -20,6 +20,8 @@ From main folder:
 - gradlew build
 - java -jar build\libs\playground-0.1.0.jar
 
+All logs will be stored in "/opt/apps/webdata/weblogs" folder.
+
 Pages (assuming Tomcat runs on 8080):
 - localhost:8080/db --> H2 console
 - localhost:8080/swagger-ui.html --> SwaggerUI
