@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class Country implements Serializable {
 
     @Id
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
     @Column(name = "CAPITAL")
