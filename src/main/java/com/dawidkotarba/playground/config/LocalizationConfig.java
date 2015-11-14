@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import javax.annotation.PostConstruct;
 import java.util.Locale;
 
 /**
@@ -21,19 +20,12 @@ import java.util.Locale;
 public class LocalizationConfig extends WebMvcConfigurerAdapter {
 
     @Value("${default.locale}")
-    private String defaultLocaleStr;
-
-    private Locale defaultLocale;
-
-    @PostConstruct
-    public void init() {
-        defaultLocale = new Locale.Builder().setLanguageTag(defaultLocaleStr).build();
-    }
+    private String defaultLocale;
 
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(defaultLocale);
+        slr.setDefaultLocale(new Locale.Builder().setLanguageTag(defaultLocale).build());
         return slr;
     }
 
