@@ -5,7 +5,7 @@ package com.dawidkotarba.playground.integration;
  */
 public class ResponseWrapper<T> {
 
-    T response;
+    private T response;
 
     public ResponseWrapper(T response) {
         this.response = response;
