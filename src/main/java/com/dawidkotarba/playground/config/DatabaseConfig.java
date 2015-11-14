@@ -4,6 +4,7 @@ import org.h2.server.web.WebServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -30,6 +31,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
+@EnableCaching
 public class DatabaseConfig {
 
     @Value("classpath:db_create.sql")

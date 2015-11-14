@@ -4,6 +4,10 @@ import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.model.entities.Country;
 import com.mysema.query.jpa.impl.JPAQuery;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +30,17 @@ public class CountryDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Bean
+    public CacheManager countriesCacheManager() {
+        return new ConcurrentMapCacheManager("countries");
+    }
+
     public List<CountryDto> getCountries() {
         List<Country> result = new JPAQuery(entityManager).from(country).fetchAll().list(country);
         return repackEntities(result);
     }
 
+    @Cacheable("countries")
     public List<CountryDto> getCountriesByName(String name) {
         List<Country> result = new JPAQuery(entityManager).from(country).where(country.name.containsIgnoreCase(name)).list(country);
         return repackEntities(result);
