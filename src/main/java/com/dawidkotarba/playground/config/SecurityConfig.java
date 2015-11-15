@@ -24,6 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/db").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests()
+                .antMatchers("/users/*").access("hasRole('ROLE_ADMIN')");
 
         http
                 .authorizeRequests()
@@ -33,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
 
+        // h2 console csrf disable
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
