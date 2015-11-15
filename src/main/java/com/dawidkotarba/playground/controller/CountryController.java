@@ -19,17 +19,17 @@ public class CountryController {
     private CountryService countryService;
 
     @RequestMapping(value = "/countries/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CountryDto> listCountries() {
-        return countryService.getCountries();
+    public List<CountryDto> all() {
+        return countryService.getAll();
     }
 
     @RequestMapping(value = "/countries/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CountryDto> getCountriesByName(@PathVariable String name) {
-        return countryService.getCountriesByName(name);
+    public List<CountryDto> getByName(@PathVariable String name) {
+        return countryService.getByName(name);
     }
 
     @RequestMapping(value = "/countries/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void addCountry(@RequestBody CountryDto countryDto) {
-        countryService.addCountry(countryDto);
+    public void add(@RequestBody CountryDto countryDto) {
+        countryService.add(countryDto);
     }
 }

@@ -19,15 +19,15 @@ public class CountryService {
     @Autowired
     private CountryDao countryDao;
 
-    public List<CountryDto> getCountries() {
-        return countryDao.getCountries();
+    public List<CountryDto> getAll() {
+        return countryDao.getAll();
     }
 
-    public List<CountryDto> getCountriesByName(String name) {
-        return countryDao.getCountriesByName(name);
+    public List<CountryDto> getByName(String name) {
+        return countryDao.getByName(name);
     }
 
-    public void addCountry(CountryDto countryDto) {
-        countryDao.addCountry(countryDto);
+    public void add(CountryDto countryDto) {
+        countryDao.add(countryDto);
     }
 }
