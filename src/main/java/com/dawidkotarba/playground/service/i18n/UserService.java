@@ -1,7 +1,8 @@
 package com.dawidkotarba.playground.service.i18n;
 
 import com.dawidkotarba.playground.dao.UserDao;
-import com.dawidkotarba.playground.integration.dto.UserDto;
+import com.dawidkotarba.playground.integration.dto.UserInDto;
+import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,15 +20,15 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public List<UserDto> getAll() {
+    public List<UserOutDto> getAll() {
         return userDao.getAll();
     }
 
-    public void add(UserDto userDto) {
-        userDao.add(userDto);
+    public void add(UserInDto userInDto) {
+        userDao.add(userInDto);
     }
 
-    public List<UserDto> getByName(String name) {
+    public List<UserOutDto> getByName(String name) {
         return userDao.getByName(name);
     }
 }

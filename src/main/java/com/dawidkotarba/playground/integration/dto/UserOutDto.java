@@ -3,7 +3,7 @@ package com.dawidkotarba.playground.integration.dto;
 /**
  * Created by Dawid Kotarba on 15.11.2015.
  */
-public class UserDto {
+public class UserOutDto {
 
     private int id;
 

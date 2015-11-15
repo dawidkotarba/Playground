@@ -1,6 +1,7 @@
 package com.dawidkotarba.playground.controller;
 
-import com.dawidkotarba.playground.integration.dto.UserDto;
+import com.dawidkotarba.playground.integration.dto.UserInDto;
+import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import com.dawidkotarba.playground.service.i18n.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,17 +24,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<UserDto> getAll() {
+    public List<UserOutDto> getAll() {
         return userService.getAll();
     }
 
     @RequestMapping(value = "/users/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<UserDto> getByName(@PathVariable String name) {
+    public List<UserOutDto> getByName(@PathVariable String name) {
         return userService.getByName(name);
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void add(@RequestBody UserDto userDto) {
-        userService.add(userDto);
+    public void add(@RequestBody UserInDto userInDto) {
+        userService.add(userInDto);
     }
 }

@@ -1,33 +1,15 @@
-package com.dawidkotarba.playground.model.entities;
-
-import javax.persistence.*;
-import java.io.Serializable;
+package com.dawidkotarba.playground.integration.dto;
 
 /**
  * Created by Dawid Kotarba on 15.11.2015.
  */
+public class UserInDto {
 
-@Entity
-@Table(name = "USER")
-public class User implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false, unique = true)
-    private int id;
-
-    @Column(name = "USERNAME", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "ROLE", nullable = false)
     private String role;
-
-    public int getId() {
-        return id;
-    }
 
     public String getUsername() {
         return username;

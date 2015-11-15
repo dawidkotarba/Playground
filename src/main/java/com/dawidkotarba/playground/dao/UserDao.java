@@ -1,6 +1,7 @@
 package com.dawidkotarba.playground.dao;
 
-import com.dawidkotarba.playground.integration.dto.UserDto;
+import com.dawidkotarba.playground.integration.dto.UserInDto;
+import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import com.dawidkotarba.playground.model.entities.User;
 import com.mysema.query.jpa.impl.JPAQuery;
 import org.springframework.beans.BeanUtils;
@@ -20,20 +21,20 @@ import static com.dawidkotarba.playground.model.entities.QUser.user;
 @Transactional(propagation = Propagation.REQUIRED)
 public class UserDao extends AbstractDao {
 
-    public List<UserDto> getAll() {
+    public List<UserOutDto> getAll() {
         List<User> users = new JPAQuery(entityManager).from(user).fetchAll().list(user);
-        return copyProperties(users, UserDto.class);
+        return copyProperties(users, UserOutDto.class);
     }
 
-    public void add(UserDto userDto) {
+    public void add(UserInDto userInDto) {
         User user = new User();
-        BeanUtils.copyProperties(userDto, user);
+        BeanUtils.copyProperties(userInDto, user);
         entityManager.persist(user);
     }
 
-    public List<UserDto> getByName(String name) {
+    public List<UserOutDto> getByName(String name) {
         List<User> result = new JPAQuery(entityManager).from(user).where(user.username.containsIgnoreCase(name)).list(user);
-        return copyProperties(result, UserDto.class);
+        return copyProperties(result, UserOutDto.class);
     }
 
 }
