@@ -1,8 +1,8 @@
 This is just a simple example of Spring-based app with AngularJS. Dev still in progress.
 
 Tech stack:
-- build: Gradle (wrapper commited)
-- container: Spring MVC
+- build: Gradle (wrapper available)
+- container: Spring MVC (web, data, aop, security, test)
 - db: H2
 - JPA: Hibernate with Querydsl
 - server: embedded Tomcat (Spring Boot app)
@@ -25,3 +25,5 @@ All logs will be stored in "/opt/apps/webdata/weblogs" folder.
 Pages (providing Tomcat runs on default 8080):
 - localhost:8080/db --> H2 console (url: jdbc:h2:mem:testdb, user: sa, pwd: <blank>)
 - localhost:8080/swagger-ui.html --> SwaggerUI
+
+Admin credentials: admin : admin
