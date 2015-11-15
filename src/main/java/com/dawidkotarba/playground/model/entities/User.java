@@ -22,6 +22,9 @@ public class User implements Serializable {
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
+    @Column(name = "ENABLED", nullable = false)
+    private boolean enabled;
+
     @Column(name = "ROLE", nullable = false)
     private String role;
 
@@ -51,5 +54,13 @@ public class User implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

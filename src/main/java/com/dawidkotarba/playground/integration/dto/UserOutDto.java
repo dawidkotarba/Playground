@@ -11,6 +11,8 @@ public class UserOutDto {
 
     private String password;
 
+    private boolean enabled;
+
     private String role;
 
     public int getId() {
@@ -43,5 +45,13 @@ public class UserOutDto {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

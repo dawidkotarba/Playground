@@ -9,6 +9,8 @@ public class UserInDto {
 
     private String password;
 
+    private boolean enabled;
+
     private String role;
 
     public String getUsername() {
@@ -33,5 +35,9 @@ public class UserInDto {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }

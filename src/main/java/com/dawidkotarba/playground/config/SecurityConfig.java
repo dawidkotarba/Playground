@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 
+import javax.sql.DataSource;
+
 /**
  * Created by Dawid Kotarba on 15.11.2015.
  */
@@ -14,19 +16,31 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 @EnableWebMvcSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private DataSource dataSource;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/").permitAll().and()
-                .authorizeRequests().antMatchers("/db/**").permitAll();
+
+        http.authorizeRequests()
+                .antMatchers("/db").access("hasRole('ROLE_ADMIN')");
+
+        http
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .and()
+                .httpBasic();
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+    public void configureAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().dataSource(dataSource).
+                usersByUsernameQuery("select username, password, enabled from user where username=?").authoritiesByUsernameQuery(
+                "select username, role from user where username=?");
     }
 }
