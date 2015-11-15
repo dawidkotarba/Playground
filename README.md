@@ -10,7 +10,7 @@ Tech stack:
 - doc: SwaggerUI
 
 Front-end (todo all):
-- build: bower + bulp/grunt
+- build: bower + gulp/grunt
 - js: AngularJS
 - css: Bootstrap + Less?
 - tests: Karma, Jasmine + Sinon + Chai
