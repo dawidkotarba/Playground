@@ -2,14 +2,18 @@ package com.dawidkotarba.playground.service;
 
 import com.dawidkotarba.playground.enums.ExceptionType;
 import com.dawidkotarba.playground.exceptions.ApplicationRuntimeException;
-import com.dawidkotarba.playground.integration.dto.ExceptionResponse;
+import com.dawidkotarba.playground.integration.exceptions.ExceptionResponse;
+import com.dawidkotarba.playground.integration.exceptions.ValidationError;
 import com.dawidkotarba.playground.service.i18n.LocalizationService;
 import com.google.common.base.Throwables;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -46,6 +50,11 @@ public class ExceptionConverterService {
         return exceptionResponse;
     }
 
+    public ExceptionResponse convert(Exception e, BindingResult bindingResult) {
+        ExceptionResponse exceptionResponse = convert(e);
+        exceptionResponse.getValidationErrors().addAll(parseBindingResult(bindingResult));
+        return exceptionResponse;
+    }
 
     private String getLocalizedUserMessage(ExceptionType exceptionType) {
         return getLocalizedUserMessage(exceptionType, null);
@@ -53,5 +62,15 @@ public class ExceptionConverterService {
 
     private String getLocalizedUserMessage(ExceptionType exceptionType, String[] params) {
         return (params != null) ? localizationService.getMessage(exceptionType.name(), params) : localizationService.getMessage(exceptionType.name());
+    }
+
+    private List<ValidationError> parseBindingResult(BindingResult bindingResult) {
+        List<ValidationError> validationErrors = new ArrayList<>();
+
+        bindingResult.getFieldErrors().forEach(fieldError ->
+                        validationErrors.add(new ValidationError(fieldError.getField(), fieldError.getDefaultMessage()))
+        );
+
+        return validationErrors;
     }
 }
