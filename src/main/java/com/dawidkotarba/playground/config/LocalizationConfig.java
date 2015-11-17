@@ -39,7 +39,7 @@ public class LocalizationConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        String[] resources = {"classpath:messages/message"};
+        String[] resources = {"classpath:messages/messages", "classpath:exceptions/exceptions"};
         messageSource.setBasenames(resources);
         return messageSource;
     }
