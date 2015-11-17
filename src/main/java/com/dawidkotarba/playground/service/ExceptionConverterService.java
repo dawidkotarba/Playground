@@ -5,7 +5,6 @@ import com.dawidkotarba.playground.exceptions.ApplicationRuntimeException;
 import com.dawidkotarba.playground.integration.exceptions.ExceptionResponse;
 import com.dawidkotarba.playground.integration.exceptions.ValidationError;
 import com.dawidkotarba.playground.service.i18n.LocalizationService;
-import com.google.common.base.Throwables;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class ExceptionConverterService {
         exceptionResponse.setExceptionType(e.getExceptionType());
         exceptionResponse.setUserMessage(getLocalizedUserMessage(e.getExceptionType(), e.getParams()));
         exceptionResponse.setDevMessage(e.getMessage());
-        LOGGER.error(Throwables.getStackTraceAsString(e));
+        LOGGER.error("Exception response created for ", e);
 
         return exceptionResponse;
     }
@@ -45,7 +44,7 @@ public class ExceptionConverterService {
         exceptionResponse.setExceptionType(ExceptionType.INTERNAL_ERROR);
         exceptionResponse.setUserMessage(getLocalizedUserMessage(ExceptionType.INTERNAL_ERROR));
         exceptionResponse.setDevMessage(e.getMessage());
-        LOGGER.error(Throwables.getStackTraceAsString(e));
+        LOGGER.error("Exception response created for ", e);
 
         return exceptionResponse;
     }
