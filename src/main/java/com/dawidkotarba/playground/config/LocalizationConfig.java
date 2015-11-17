@@ -19,7 +19,7 @@ import java.util.Locale;
 @Configuration
 public class LocalizationConfig extends WebMvcConfigurerAdapter {
 
-    @Value("${default.locale}")
+    @Value("${default.locale:en}")
     private String defaultLocale;
 
     @Bean
