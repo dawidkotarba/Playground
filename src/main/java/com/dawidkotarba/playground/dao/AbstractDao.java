@@ -22,7 +22,7 @@ public abstract class AbstractDao {
     @PersistenceContext
     protected EntityManager entityManager;
 
-    public static <A, B> List<B> copyProperties(List<A> source, Class<B> targetClass) {
+    protected <A, B> List<B> copyProperties(List<A> source, Class<B> targetClass) {
         List<B> result = new ArrayList<>();
 
         source.forEach(entity -> {
@@ -31,7 +31,7 @@ public abstract class AbstractDao {
             try {
                 dto = targetClass.newInstance();
             } catch (Exception e) {
-                throw new InternalErrorException("Cannot create instance of " + targetClass);
+                throw new InternalErrorException("Cannot create instance of " + targetClass, e);
             }
 
             BeanUtils.copyProperties(entity, dto);
