@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
@@ -24,7 +24,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @TestExecutionListeners(inheritListeners = false, listeners = {
         DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class})
-public abstract class AbstractTestNgConfiguration extends AbstractTestNGSpringContextTests {
+public abstract class AbstractTestNgConfiguration extends AbstractTransactionalTestNGSpringContextTests {
 
     protected AbstractTestNgConfiguration() {
         // intentionally left blank
