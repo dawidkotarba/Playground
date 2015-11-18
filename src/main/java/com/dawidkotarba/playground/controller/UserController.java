@@ -16,12 +16,12 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private UserService userService;
-
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
+    private UserService userService;
 
     @RequestMapping(value = "/users/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserOutDto> getAll() {

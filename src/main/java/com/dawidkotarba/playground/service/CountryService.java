@@ -17,6 +17,10 @@ import java.util.List;
 public class CountryService {
 
     @Autowired
+    public CountryService(CountryDao countryDao) {
+        this.countryDao = countryDao;
+    }
+
     private CountryDao countryDao;
 
     public List<CountryDto> getAll() {

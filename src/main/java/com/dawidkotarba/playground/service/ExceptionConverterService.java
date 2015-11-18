@@ -22,9 +22,13 @@ import java.util.UUID;
 @Service
 public class ExceptionConverterService {
 
+    @Autowired
+    public ExceptionConverterService(LocalizationService localizationService) {
+        this.localizationService = localizationService;
+    }
+
     private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
     private LocalizationService localizationService;
 
     public ExceptionResponse convert(ApplicationRuntimeException e) {

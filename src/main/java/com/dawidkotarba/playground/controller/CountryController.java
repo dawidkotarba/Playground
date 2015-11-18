@@ -16,6 +16,10 @@ import java.util.List;
 public class CountryController {
 
     @Autowired
+    public CountryController(CountryService countryService) {
+        this.countryService = countryService;
+    }
+
     private CountryService countryService;
 
     @RequestMapping(value = "/countries/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ExceptionControllerAdvice {
 
     @Autowired
+    public ExceptionControllerAdvice(ExceptionConverterService exceptionConverterService) {
+        this.exceptionConverterService = exceptionConverterService;
+    }
+
     private ExceptionConverterService exceptionConverterService;
 
     @ExceptionHandler(value = Exception.class)
