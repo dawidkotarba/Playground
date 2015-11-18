@@ -1,7 +1,8 @@
 package integration.com.dawidkotarba.dao;
 
-import com.dawidkotarba.playground.dao.CountryDao;
-import com.dawidkotarba.playground.integration.dto.CountryDto;
+import com.dawidkotarba.playground.dao.UserDao;
+import com.dawidkotarba.playground.integration.dto.UserInDto;
+import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import integration.com.dawidkotarba.AbstractTestNgConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
@@ -17,16 +18,16 @@ import static org.hamcrest.Matchers.hasSize;
 /**
  * Created by Dawid Kotarba on 18.11.2015.
  */
-public class CountryDaoTest extends AbstractTestNgConfiguration {
+public class UserDaoTest extends AbstractTestNgConfiguration {
 
     @Autowired
-    private CountryDao underTest;
+    private UserDao underTest;
 
     @Test
     public void getAllTest() {
 
         // given
-        List<CountryDto> result = underTest.getAll();
+        List<UserOutDto> result = underTest.getAll();
 
         // then
         assertThat(result, is(notNullValue()));
@@ -36,41 +37,45 @@ public class CountryDaoTest extends AbstractTestNgConfiguration {
     @Test
     public void getByNameTest() {
         // given
-        String name = "Poland";
+        String name = "admin";
 
         // when
-        List<CountryDto> result = underTest.getByName(name);
+        List<UserOutDto> result = underTest.getByName(name);
 
         // then
         assertThat(result, is(notNullValue()));
         assertThat(result, hasSize(1));
+        assertThat(result.get(0).getUsername(), is(equalTo(name)));
     }
 
     @Test
     public void addTest() {
         // given
-        CountryDto countryDto = new CountryDto();
-        countryDto.setName("TestCountry");
-        countryDto.setPopulation(100);
+        UserInDto userInDto = new UserInDto();
+        userInDto.setUsername("TestUser");
+        userInDto.setPassword("TestPassword");
+        userInDto.setRole("TestRole");
 
         // when
-        underTest.add(countryDto);
-        List<CountryDto> result = underTest.getByName("TestCountry");
+        underTest.add(userInDto);
+        List<UserOutDto> result = underTest.getByName("TestUser");
 
         // then
         assertThat(result, is(notNullValue()));
         assertThat(result, hasSize(1));
-        assertThat(result.get(0).getName(), is(equalTo("TestCountry")));
-        assertThat(result.get(0).getPopulation(), is(equalTo(100)));
+        assertThat(result.get(0).getUsername(), is(equalTo("TestUser")));
+        assertThat(result.get(0).getPassword(), is(equalTo("TestPassword")));
+        assertThat(result.get(0).getRole(), is(equalTo("TestRole")));
+
     }
 
     @Test
     public void getEmptyTest() {
         // given
-        String name = "NotExistingCountry";
+        String name = "NotExistingUser";
 
         // when
-        List<CountryDto> result = underTest.getByName(name);
+        List<UserOutDto> result = underTest.getByName(name);
 
         // then
         assertThat(result, is(equalTo(Collections.EMPTY_LIST)));
