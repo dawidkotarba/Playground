@@ -4,6 +4,7 @@ import com.dawidkotarba.playground.dao.CountryDao;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import integration.com.dawidkotarba.AbstractTestNgConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.testng.annotations.Test;
 
 import java.util.Collections;
@@ -46,6 +47,15 @@ public class CountryDaoTest extends AbstractTestNgConfiguration {
         assertThat(result, hasSize(1));
     }
 
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
+    public void getByEmptyNameTest() {
+        // given
+        String name = "";
+
+        // when
+        underTest.getByName(name);
+    }
+
     @Test
     public void addTest() {
         // given
@@ -62,6 +72,15 @@ public class CountryDaoTest extends AbstractTestNgConfiguration {
         assertThat(result, hasSize(1));
         assertThat(result.get(0).getName(), is(equalTo("TestCountry")));
         assertThat(result.get(0).getPopulation(), is(equalTo(100)));
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void addNullTest() {
+        // given
+        CountryDto countryDto = null;
+
+        // when
+        underTest.add(countryDto);
     }
 
     @Test

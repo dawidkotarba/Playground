@@ -2,7 +2,9 @@ package com.dawidkotarba.playground.dao;
 
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.model.entities.Country;
+import com.google.common.base.Preconditions;
 import com.mysema.query.jpa.impl.JPAQuery;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,11 +38,15 @@ public class CountryDao extends AbstractDao {
 
     @Cacheable("countries")
     public List<CountryDto> getByName(String name) {
+        Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
+
         List<Country> result = new JPAQuery(entityManager).from(country).where(country.name.containsIgnoreCase(name)).list(country);
         return copyProperties(result, CountryDto.class);
     }
 
     public void add(CountryDto countryDto) {
+        Preconditions.checkNotNull(countryDto, "countryDto cannot be null");
+
         Country country = new Country();
         BeanUtils.copyProperties(countryDto, country);
         entityManager.persist(country);

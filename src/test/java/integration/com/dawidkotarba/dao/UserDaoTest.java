@@ -5,6 +5,7 @@ import com.dawidkotarba.playground.integration.dto.UserInDto;
 import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import integration.com.dawidkotarba.AbstractTestNgConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.testng.annotations.Test;
 
 import java.util.Collections;
@@ -48,6 +49,15 @@ public class UserDaoTest extends AbstractTestNgConfiguration {
         assertThat(result.get(0).getUsername(), is(equalTo(name)));
     }
 
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
+    public void getByEmptyNameTest() {
+        // given
+        String name = "";
+
+        // when
+        underTest.getByName(name);
+    }
+
     @Test
     public void addTest() {
         // given
@@ -66,7 +76,15 @@ public class UserDaoTest extends AbstractTestNgConfiguration {
         assertThat(result.get(0).getUsername(), is(equalTo("TestUser")));
         assertThat(result.get(0).getPassword(), is(equalTo("TestPassword")));
         assertThat(result.get(0).getRole(), is(equalTo("TestRole")));
+    }
 
+    @Test(expectedExceptions = NullPointerException.class)
+    public void addNullTest() {
+        // given
+        UserInDto userInDto = null;
+
+        // when
+        underTest.add(userInDto);
     }
 
     @Test
