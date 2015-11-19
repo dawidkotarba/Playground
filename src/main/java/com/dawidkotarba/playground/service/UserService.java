@@ -1,4 +1,4 @@
-package com.dawidkotarba.playground.service.i18n;
+package com.dawidkotarba.playground.service;
 
 import com.dawidkotarba.playground.dao.UserDao;
 import com.dawidkotarba.playground.integration.dto.UserInDto;
