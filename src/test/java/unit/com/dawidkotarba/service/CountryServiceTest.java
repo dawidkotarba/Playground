@@ -4,7 +4,10 @@ import com.dawidkotarba.playground.dao.CountryDao;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.service.CountryService;
 import integration.com.dawidkotarba.AbstractTestNgConfiguration;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

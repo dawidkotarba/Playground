@@ -1,4 +1,4 @@
-package com.dawidkotarba.playground.advice;
+package com.dawidkotarba.playground.aop;
 
 import com.dawidkotarba.playground.exceptions.InternalErrorException;
 import com.dawidkotarba.playground.exceptions.NotFoundException;

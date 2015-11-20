@@ -1,4 +1,4 @@
-package com.dawidkotarba.playground.controller;
+package com.dawidkotarba.playground.controllers;
 
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.service.CountryService;

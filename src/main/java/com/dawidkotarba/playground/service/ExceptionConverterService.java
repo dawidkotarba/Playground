@@ -5,8 +5,6 @@ import com.dawidkotarba.playground.exceptions.ApplicationRuntimeException;
 import com.dawidkotarba.playground.integration.exceptions.ExceptionResponse;
 import com.dawidkotarba.playground.integration.exceptions.ValidationError;
 import com.dawidkotarba.playground.service.i18n.LocalizationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -27,8 +25,6 @@ public class ExceptionConverterService {
         this.localizationService = localizationService;
     }
 
-    private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
     private LocalizationService localizationService;
 
     public ExceptionResponse convert(ApplicationRuntimeException e) {
@@ -37,7 +33,6 @@ public class ExceptionConverterService {
         exceptionResponse.setExceptionType(e.getExceptionType());
         exceptionResponse.setUserMessage(getLocalizedUserMessage(e.getExceptionType(), e.getParams()));
         exceptionResponse.setDevMessage(e.getMessage());
-        LOGGER.error("Exception response created for ", e);
 
         return exceptionResponse;
     }
@@ -48,7 +43,6 @@ public class ExceptionConverterService {
         exceptionResponse.setExceptionType(ExceptionType.INTERNAL_ERROR);
         exceptionResponse.setUserMessage(getLocalizedUserMessage(ExceptionType.INTERNAL_ERROR));
         exceptionResponse.setDevMessage(e.getMessage());
-        LOGGER.error("Exception response created for ", e);
 
         return exceptionResponse;
     }
