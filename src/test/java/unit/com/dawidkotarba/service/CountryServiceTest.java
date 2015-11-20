@@ -3,16 +3,14 @@ package unit.com.dawidkotarba.service;
 import com.dawidkotarba.playground.dao.CountryDao;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.service.CountryService;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,6 +28,9 @@ public class CountryServiceTest {
 
     @Mock
     private CountryDao countryDao;
+
+    @Captor
+    private ArgumentCaptor<String> nameCaptor;
 
     @BeforeTest
     public void setUp() {
@@ -54,14 +55,19 @@ public class CountryServiceTest {
     @Test
     public void getByNameTest() {
         // given
-        doReturn(new ArrayList<CountryDto>()).when(countryDao).getByName(anyString());
+        String testName = "test";
+        doReturn(new ArrayList<CountryDto>()).when(countryDao).getByName(testName);
 
         // when
-        List<CountryDto> result = underTest.getByName("test");
+        List<CountryDto> result = underTest.getByName(testName);
 
         // then
         assertThat(result, is(notNullValue()));
-        verify(countryDao, Mockito.times(1)).getByName(anyString());
+        verify(countryDao, Mockito.times(1)).getByName(testName);
+
+        verify(countryDao).getByName(nameCaptor.capture());
+        assertThat(nameCaptor.getValue(), is(equalTo(testName)));
+
         verifyNoMoreInteractions(countryDao);
     }
 
