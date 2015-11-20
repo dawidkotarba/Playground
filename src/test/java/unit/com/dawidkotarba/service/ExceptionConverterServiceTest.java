@@ -12,7 +12,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class ExceptionConverterServiceTest {
     @Mock
     private LocalizationService localizationService;
 
-    @BeforeClass
+    @BeforeTest
     public void init() {
         MockitoAnnotations.initMocks(this);
         underTest = new ExceptionConverterService(localizationService);

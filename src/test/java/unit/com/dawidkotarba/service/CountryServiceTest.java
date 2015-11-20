@@ -3,12 +3,11 @@ package unit.com.dawidkotarba.service;
 import com.dawidkotarba.playground.dao.CountryDao;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.service.CountryService;
-import integration.com.dawidkotarba.AbstractTestNgConfiguration;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -19,13 +18,12 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by Dawid Kotarba on 18.11.2015.
  */
-public class CountryServiceTest extends AbstractTestNgConfiguration {
+public class CountryServiceTest {
 
     @InjectMocks
     private CountryService underTest;
@@ -33,7 +31,7 @@ public class CountryServiceTest extends AbstractTestNgConfiguration {
     @Mock
     private CountryDao countryDao;
 
-    @BeforeClass
+    @BeforeTest
     public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
@@ -50,6 +48,7 @@ public class CountryServiceTest extends AbstractTestNgConfiguration {
         // then
         assertThat(result, is(notNullValue()));
         verify(countryDao, Mockito.times(1)).getAll();
+        verifyNoMoreInteractions(countryDao);
     }
 
     @Test
@@ -63,6 +62,7 @@ public class CountryServiceTest extends AbstractTestNgConfiguration {
         // then
         assertThat(result, is(notNullValue()));
         verify(countryDao, Mockito.times(1)).getByName(anyString());
+        verifyNoMoreInteractions(countryDao);
     }
 
     @Test
@@ -72,5 +72,6 @@ public class CountryServiceTest extends AbstractTestNgConfiguration {
 
         // then
         verify(countryDao, Mockito.times(1)).add(any());
+        verifyNoMoreInteractions(countryDao);
     }
 }

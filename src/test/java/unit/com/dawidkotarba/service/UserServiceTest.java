@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -21,6 +21,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * Created by Dawid Kotarba on 19.11.2015.
@@ -33,7 +34,7 @@ public class UserServiceTest {
     @Mock
     private UserDao userDao;
 
-    @BeforeClass
+    @BeforeTest
     public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
@@ -50,6 +51,7 @@ public class UserServiceTest {
         // then
         assertThat(result, is(notNullValue()));
         verify(userDao, Mockito.times(1)).getAll();
+        verifyNoMoreInteractions(userDao);
     }
 
     @Test
@@ -63,6 +65,7 @@ public class UserServiceTest {
         // then
         assertThat(result, is(notNullValue()));
         verify(userDao, Mockito.times(1)).getByName(anyString());
+        verifyNoMoreInteractions(userDao);
     }
 
     @Test
@@ -72,5 +75,6 @@ public class UserServiceTest {
 
         // then
         verify(userDao, Mockito.times(1)).add(any());
+        verifyNoMoreInteractions(userDao);
     }
 }
