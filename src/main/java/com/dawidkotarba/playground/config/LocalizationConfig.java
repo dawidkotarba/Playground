@@ -1,6 +1,6 @@
 package com.dawidkotarba.playground.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -17,15 +17,15 @@ import java.util.Locale;
  */
 
 @Configuration
+@ConfigurationProperties(prefix = "default")
 public class LocalizationConfig extends WebMvcConfigurerAdapter {
 
-    @Value("${default.locale:en}")
-    private String defaultLocale;
+    private String locale;
 
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(new Locale.Builder().setLanguageTag(defaultLocale).build());
+        slr.setDefaultLocale(new Locale.Builder().setLanguageTag(locale).build());
         return slr;
     }
 
@@ -49,4 +49,7 @@ public class LocalizationConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(localeChangeInterceptor());
     }
 
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
 }
