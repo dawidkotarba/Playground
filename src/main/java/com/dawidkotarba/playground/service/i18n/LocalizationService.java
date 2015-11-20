@@ -1,8 +1,8 @@
 package com.dawidkotarba.playground.service.i18n;
 
+import com.dawidkotarba.playground.config.LocalizationConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,12 +15,15 @@ public class LocalizationService {
     @Autowired
     private MessageSource messageSource;
 
+    @Autowired
+    private LocalizationConfig localizationConfig;
+
     public String getMessage(String code) {
-        return messageSource.getMessage(code, null, LocaleContextHolder.getLocale());
+        return messageSource.getMessage(code, null, localizationConfig.getDefaultLocale());
     }
 
     public String getMessage(String code, Object[] args) {
-        return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
+        return messageSource.getMessage(code, args, localizationConfig.getDefaultLocale());
     }
 
 }
