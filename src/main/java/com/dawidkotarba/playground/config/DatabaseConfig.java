@@ -31,7 +31,6 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableCaching
 public class DatabaseConfig {
 
     @Value("classpath:db_create.sql")

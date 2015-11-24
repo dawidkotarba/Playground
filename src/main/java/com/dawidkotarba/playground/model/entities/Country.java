@@ -38,7 +38,6 @@ public class Country implements Serializable {
         this.name = name;
     }
 
-
     public String getCapital() {
         return capital;
     }

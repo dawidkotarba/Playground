@@ -26,17 +26,12 @@ import static com.dawidkotarba.playground.model.entities.QCountry.country;
 @Transactional(propagation = Propagation.REQUIRED)
 public class CountryDao extends AbstractDao {
 
-    @Bean
-    public CacheManager countriesCacheManager() {
-        return new ConcurrentMapCacheManager("countries");
-    }
-
     public List<CountryDto> getAll() {
         List<Country> result = new JPAQuery(entityManager).from(country).fetchAll().list(country);
         return copyProperties(result, CountryDto.class);
     }
 
-    @Cacheable("countries")
+    @Cacheable("countriesCache")
     public List<CountryDto> getByName(String name) {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
 
