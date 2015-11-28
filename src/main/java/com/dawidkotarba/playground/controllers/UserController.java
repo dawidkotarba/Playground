@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void add(@RequestBody UserInDto userInDto) {
+    public void add(@RequestBody @Valid UserInDto userInDto) {
         userService.add(userInDto);
     }
 }

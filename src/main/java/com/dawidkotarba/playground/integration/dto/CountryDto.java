@@ -1,10 +1,14 @@
 package com.dawidkotarba.playground.integration.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * Created by Dawid Kotarba on 12.11.2015.
  */
 public class CountryDto {
 
+    @NotNull
     private String name;
 
     private String capital;
@@ -13,6 +17,7 @@ public class CountryDto {
 
     private int population;
 
+    @Size(max = 3)
     private String currency;
 
     public String getName() {
