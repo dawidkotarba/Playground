@@ -74,7 +74,6 @@ public class UserDaoTest extends AbstractTestNgConfiguration {
         assertThat(result, is(notNullValue()));
         assertThat(result, hasSize(1));
         assertThat(result.get(0).getUsername(), is(equalTo("TestUser")));
-        assertThat(result.get(0).getPassword(), is(equalTo("TestPassword")));
         assertThat(result.get(0).getRole(), is(equalTo("TestRole")));
     }
 

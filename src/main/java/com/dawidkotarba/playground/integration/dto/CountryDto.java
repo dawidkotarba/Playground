@@ -1,6 +1,7 @@
 package com.dawidkotarba.playground.integration.dto;
 
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.constraints.Size;
 
 /**
@@ -8,7 +9,7 @@ import javax.validation.constraints.Size;
  */
 public class CountryDto {
 
-    @NotNull
+    @NotEmpty
     private String name;
 
     private String capital;

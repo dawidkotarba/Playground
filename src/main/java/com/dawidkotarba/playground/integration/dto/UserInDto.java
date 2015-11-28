@@ -1,22 +1,21 @@
 package com.dawidkotarba.playground.integration.dto;
 
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Created by Dawid Kotarba on 15.11.2015.
  */
 public class UserInDto {
 
-    @NotNull
+    @NotEmpty
     private String username;
 
-    @NotNull
+    @NotEmpty
     private String password;
 
-    @NotNull
     private boolean enabled;
 
-    @NotNull
+    @NotEmpty
     private String role;
 
     public String getUsername() {
@@ -45,5 +44,9 @@ public class UserInDto {
 
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
