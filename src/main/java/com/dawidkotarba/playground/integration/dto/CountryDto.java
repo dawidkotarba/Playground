@@ -12,7 +12,7 @@ public class CountryDto {
     @NotEmpty
     private String name;
 
-    private String capital;
+    private Capital capital;
 
     private int area;
 
@@ -29,11 +29,11 @@ public class CountryDto {
         this.name = name;
     }
 
-    public String getCapital() {
+    public Capital getCapital() {
         return capital;
     }
 
-    public void setCapital(String capital) {
+    public void setCapital(Capital capital) {
         this.capital = capital;
     }
 
@@ -60,4 +60,27 @@ public class CountryDto {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
+
+    public static class Capital {
+
+        private String name;
+        private int population;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getPopulation() {
+            return population;
+        }
+
+        public void setPopulation(int population) {
+            this.population = population;
+        }
+    }
+
 }

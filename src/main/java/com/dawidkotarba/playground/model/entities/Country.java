@@ -1,9 +1,6 @@
 package com.dawidkotarba.playground.model.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -18,8 +15,9 @@ public class Country implements Serializable {
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "CAPITAL")
-    private String capital;
+    @OneToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "CAPITAL", referencedColumnName = "NAME")
+    private Capital capital;
 
     @Column(name = "AREA")
     private int area;
@@ -38,11 +36,11 @@ public class Country implements Serializable {
         this.name = name;
     }
 
-    public String getCapital() {
+    public Capital getCapital() {
         return capital;
     }
 
-    public void setCapital(String capital) {
+    public void setCapital(Capital capital) {
         this.capital = capital;
     }
 
