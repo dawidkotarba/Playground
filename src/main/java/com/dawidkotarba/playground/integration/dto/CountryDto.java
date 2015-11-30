@@ -12,7 +12,7 @@ public class CountryDto {
     @NotEmpty
     private String name;
 
-    private Capital capital;
+    private Capital capital = new Capital();
 
     private int area;
 

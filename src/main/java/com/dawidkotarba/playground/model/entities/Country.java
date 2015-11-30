@@ -15,7 +15,7 @@ public class Country implements Serializable {
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
-    @OneToOne(fetch=FetchType.EAGER)
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "CAPITAL", referencedColumnName = "NAME")
     private Capital capital;
 
