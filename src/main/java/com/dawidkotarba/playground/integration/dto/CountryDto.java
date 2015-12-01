@@ -2,6 +2,7 @@ package com.dawidkotarba.playground.integration.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 /**
@@ -12,6 +13,7 @@ public class CountryDto {
     @NotEmpty
     private String name;
 
+    @Valid
     private CapitalDto capital = new CapitalDto();
 
     private int area;

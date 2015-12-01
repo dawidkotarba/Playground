@@ -1,11 +1,15 @@
 package com.dawidkotarba.playground.integration.dto;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * Created by Dawid Kotarba on 30.11.2015.
  */
 public class CapitalDto {
 
+    @NotEmpty
     private String name;
+
     private int population;
 
     public String getName() {
