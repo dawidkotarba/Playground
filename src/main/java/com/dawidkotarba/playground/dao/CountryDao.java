@@ -1,12 +1,11 @@
 package com.dawidkotarba.playground.dao;
 
+import com.dawidkotarba.playground.integration.assembler.CountryAssembler;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
-import com.dawidkotarba.playground.model.entities.Capital;
 import com.dawidkotarba.playground.model.entities.Country;
 import com.google.common.base.Preconditions;
 import com.mysema.query.jpa.impl.JPAQuery;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -26,16 +25,7 @@ public class CountryDao extends AbstractDao {
 
     public List<CountryDto> getAll() {
         List<Country> result = new JPAQuery(entityManager).from(country).fetchAll().list(country);
-        List<CountryDto> countries = copyProperties(result, CountryDto.class);
-
-        for (int i = 0; i < countries.size(); i++) {
-            if (result.get(i).getCapital() != null) {
-                BeanUtils.copyProperties(result.get(i).getCapital(), countries.get(i).getCapital());
-
-            }
-        }
-
-        return countries;
+        return CountryAssembler.convertToDto(result);
     }
 
     @Cacheable("countriesCache")
@@ -43,25 +33,11 @@ public class CountryDao extends AbstractDao {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
 
         List<Country> result = new JPAQuery(entityManager).from(country).where(country.name.containsIgnoreCase(name)).list(country);
-        List<CountryDto> countries = copyProperties(result, CountryDto.class);
-
-        for (int i = 0; i < countries.size(); i++) {
-            BeanUtils.copyProperties(result.get(i).getCapital(), countries.get(i).getCapital());
-        }
-
-        return countries;
+        return CountryAssembler.convertToDto(result);
     }
 
     public void add(CountryDto countryDto) {
         Preconditions.checkNotNull(countryDto, "countryDto cannot be null");
-
-        Country country = new Country();
-        BeanUtils.copyProperties(countryDto, country);
-
-        Capital capital = new Capital();
-        BeanUtils.copyProperties(countryDto.getCapital(), capital);
-        country.setCapital(capital);
-
-        entityManager.persist(country);
+        entityManager.persist(CountryAssembler.convert(countryDto));
     }
 }
