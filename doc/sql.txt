@@ -16,3 +16,4 @@ select * from country join capital on country.capital = capital.name;
 select * from capital join country on capital.name = country.capital;
 select * from capital left join country on capital.name = country.capital;
 select * from capital left join country on capital.name = country.capital where country.name is NULL;
+select ct.name, ct.population / ct.area, cp.name from country ct join capital cp on ct.capital = cp.name
