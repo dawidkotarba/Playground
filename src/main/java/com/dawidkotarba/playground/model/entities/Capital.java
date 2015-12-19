@@ -9,9 +9,11 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "CAPITAL")
-public class Capital implements Serializable {
+@SequenceGenerator(name = "PK", sequenceName = "CAPITAL_SEQ")
+public class Capital extends AbstractPersistableSequence {
 
-    @Id
+    private static final long serialVersionUID = -7662351495859298047L;
+
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 

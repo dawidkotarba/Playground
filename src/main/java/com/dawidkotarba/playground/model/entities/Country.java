@@ -9,7 +9,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "COUNTRY")
-public class Country implements Serializable {
+@SequenceGenerator(name = "PK", sequenceName = "COUNTRY_SEQ")
+public class Country extends AbstractPersistableSequence {
+
+    private static final long serialVersionUID = -8939819042050493878L;
 
     @Id
     @Column(name = "NAME", nullable = false, unique = true)

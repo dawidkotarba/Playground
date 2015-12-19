@@ -9,12 +9,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "USER")
-public class User implements Serializable {
+@SequenceGenerator(name = "PK", sequenceName = "USER_SEQ")
+public class User extends AbstractPersistableSequence {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false, unique = true)
-    private int id;
+    private static final long serialVersionUID = -2938845917673965315L;
 
     @Column(name = "USERNAME", nullable = false, unique = true)
     private String username;
@@ -27,10 +25,6 @@ public class User implements Serializable {
 
     @Column(name = "ROLE", nullable = false)
     private String role;
-
-    public int getId() {
-        return id;
-    }
 
     public String getUsername() {
         return username;
