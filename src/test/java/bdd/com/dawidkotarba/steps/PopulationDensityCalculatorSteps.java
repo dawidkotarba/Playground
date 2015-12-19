@@ -25,8 +25,8 @@ public class PopulationDensityCalculatorSteps {
     }
 
     @Then("the population density should be <result>")
-    public void then(@Named("result") float result) {
-        float calculationResult = underTest.calculate(inputData);
+    public void then(@Named("result") int result) {
+        int calculationResult = underTest.calculate(inputData);
 
         assertThat(result, is(equalTo(calculationResult)));
     }

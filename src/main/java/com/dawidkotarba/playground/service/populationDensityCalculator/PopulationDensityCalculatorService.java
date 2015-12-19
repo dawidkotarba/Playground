@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PopulationDensityCalculatorService {
 
-    public float calculate(PopulationDensityCalculationInputData inputData) {
+    public int calculate(PopulationDensityCalculationInputData inputData) {
         Preconditions.checkArgument(inputData.getArea() > 0, "Area has to be a positive number");
 
         return inputData.getPopulation() / inputData.getArea();
