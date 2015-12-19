@@ -12,4 +12,5 @@ Then the population density should be <result>
 
 Examples:
 |population|area|result|
-|100|10|10|
+|38000000|312685|121|
+|81000000|357340|226|
