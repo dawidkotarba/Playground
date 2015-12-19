@@ -27,7 +27,7 @@ public abstract class AbstractStoryConfiguration extends JUnitStory {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration());
+        return new InstanceStepsFactory(configuration(), stepInstances());
     }
 
     public abstract Object[] stepInstances();
