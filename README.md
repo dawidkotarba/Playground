@@ -6,7 +6,7 @@ Tech stack:
 - db: H2
 - JPA: Hibernate with Querydsl
 - server: embedded Tomcat (Spring Boot app)
-- tests: TestNG, Mockito, Hamcrest
+- tests: TestNG, Mockito, Hamcrest, JBehave
 - doc: SwaggerUI
 
 Front-end (todo all):
