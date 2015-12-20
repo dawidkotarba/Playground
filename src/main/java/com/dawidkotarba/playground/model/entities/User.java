@@ -1,7 +1,9 @@
 package com.dawidkotarba.playground.model.entities;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * Created by Dawid Kotarba on 15.11.2015.
@@ -9,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "USER")
-@SequenceGenerator(name = "PK", sequenceName = "USER_SEQ")
+@SequenceGenerator(name = "PK", sequenceName = "USER_SEQ", allocationSize = 1)
 public class User extends AbstractPersistableSequence {
 
     private static final long serialVersionUID = -2938845917673965315L;

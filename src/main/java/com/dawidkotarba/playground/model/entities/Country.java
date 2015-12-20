@@ -1,7 +1,6 @@
 package com.dawidkotarba.playground.model.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by Dawid Kotarba on 12.11.2015.
@@ -9,7 +8,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "COUNTRY")
-@SequenceGenerator(name = "PK", sequenceName = "COUNTRY_SEQ")
+@SequenceGenerator(name = "PK", sequenceName = "COUNTRY_SEQ", allocationSize = 1)
 public class Country extends AbstractPersistableSequence {
 
     private static final long serialVersionUID = -8939819042050493878L;
