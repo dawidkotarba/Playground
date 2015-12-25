@@ -1,6 +1,8 @@
 package com.dawidkotarba.playground.model.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Dawid Kotarba on 12.11.2015.
@@ -13,7 +15,6 @@ public class Country extends AbstractPersistableSequence {
 
     private static final long serialVersionUID = -8939819042050493878L;
 
-    @Id
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
@@ -29,6 +30,12 @@ public class Country extends AbstractPersistableSequence {
 
     @Column(name = "CURRENCY")
     private String currency;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "NEIGHBOUR",
+            joinColumns = {@JoinColumn(name = "COUNTRY")},
+            inverseJoinColumns = {@JoinColumn(name = "NEIGHBOUR")})
+    private Set<Country> neighbours = new HashSet<>();
 
     public String getName() {
         return name;
@@ -68,5 +75,13 @@ public class Country extends AbstractPersistableSequence {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public Set<Country> getNeighbours() {
+        return neighbours;
+    }
+
+    public void setNeighbours(Set<Country> neighbours) {
+        this.neighbours = neighbours;
     }
 }
