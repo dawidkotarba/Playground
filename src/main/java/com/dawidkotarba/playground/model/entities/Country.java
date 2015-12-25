@@ -19,7 +19,7 @@ public class Country extends AbstractPersistableSequence {
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CAPITAL", referencedColumnName = "NAME")
+    @JoinColumn(name = "CAPITAL")
     private Capital capital;
 
     @Column(name = "AREA")
