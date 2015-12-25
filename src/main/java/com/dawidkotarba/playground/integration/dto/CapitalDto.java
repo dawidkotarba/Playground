@@ -2,10 +2,14 @@ package com.dawidkotarba.playground.integration.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.io.Serializable;
+
 /**
  * Created by Dawid Kotarba on 30.11.2015.
  */
-public class CapitalDto {
+public class CapitalDto implements Serializable {
+
+    private static final long serialVersionUID = 2780240656929513959L;
 
     @NotEmpty
     private String name;

@@ -2,10 +2,14 @@ package com.dawidkotarba.playground.integration.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.io.Serializable;
+
 /**
  * Created by Dawid Kotarba on 15.11.2015.
  */
-public class UserInDto {
+public class UserInDto implements Serializable {
+
+    private static final long serialVersionUID = 6434136545021517484L;
 
     @NotEmpty
     private String username;

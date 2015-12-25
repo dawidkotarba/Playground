@@ -4,11 +4,16 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Dawid Kotarba on 12.11.2015.
  */
-public class CountryDto {
+public class CountryDto implements Serializable {
+
+    private static final long serialVersionUID = -8761489229573227799L;
 
     @NotEmpty
     private String name;
@@ -22,6 +27,8 @@ public class CountryDto {
 
     @Size(max = 3)
     private String currency;
+
+    private Set<String> neighbourCountriesNames = new HashSet<>();
 
     public String getName() {
         return name;
@@ -61,5 +68,13 @@ public class CountryDto {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public Set<String> getNeighbourCountriesNames() {
+        return neighbourCountriesNames;
+    }
+
+    public void setNeighbourCountriesNames(Set<String> neighbourCountriesNames) {
+        this.neighbourCountriesNames = neighbourCountriesNames;
     }
 }

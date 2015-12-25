@@ -27,6 +27,10 @@ public class CountryAssembler {
 
         countryDto.setCapital(capitalDto);
 
+        for (Country neighbour : country.getNeighbours()) {
+            countryDto.getNeighbourCountriesNames().add(neighbour.getName());
+        }
+
         return countryDto;
     }
 

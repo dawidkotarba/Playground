@@ -1,9 +1,13 @@
 package com.dawidkotarba.playground.integration.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by Dawid Kotarba on 15.11.2015.
  */
-public class UserOutDto {
+public class UserOutDto implements Serializable {
+
+    private static final long serialVersionUID = 2386228436272402026L;
 
     private int id;
 
