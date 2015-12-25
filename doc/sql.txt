@@ -17,4 +17,4 @@ select * from capital join country on capital.name = country.capital;
 select * from capital left join country on capital.name = country.capital;
 select * from capital left join country on capital.name = country.capital where country.name is NULL;
 select ct.name, ct.population / ct.area, cp.name from country ct join capital cp on ct.capital = cp.name
-select * from country ct where ct.name in (select neighbour from neighbour where country = 'Poland')
+select * from country ct where ct.id in (select neighbour from neighbour nb where nb.country = 1)
