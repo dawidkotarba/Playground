@@ -15,6 +15,6 @@ public abstract class AbstractPersistableSequence implements HasId<Long> {
 
     @Override
     public Long getId() {
-        return null;
+        return id;
     }
 }
