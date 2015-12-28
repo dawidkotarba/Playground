@@ -101,7 +101,7 @@ public class DatabaseConfig {
 
     Properties jpaProperties() {
         Properties props = new Properties();
-        props.put("hibernate.show_sql", "false");
+        props.put("hibernate.show_sql", "true");
         props.put("hibernate.format_sql", "true");
 
         return props;
