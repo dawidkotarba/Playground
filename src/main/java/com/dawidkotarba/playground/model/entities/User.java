@@ -14,8 +14,6 @@ import javax.persistence.Table;
 @SequenceGenerator(name = "PK", sequenceName = "USER_SEQ", allocationSize = 1)
 public class User extends AbstractPersistableSequence {
 
-    private static final long serialVersionUID = -2938845917673965315L;
-
     @Column(name = "USERNAME", nullable = false, unique = true)
     private String username;
 

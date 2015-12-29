@@ -16,9 +16,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExceptionLoggerAspect {
 
-    private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("within(com.dawidkotarba.playground.dao..*) || within(com.dawidkotarba.playground.service..*) || within(com.dawidkotarba.playground.controllers..*)")
+    @Pointcut("within(com.dawidkotarba.playground.dao..*)"
+            + "|| within(com.dawidkotarba.playground.service..*)"
+            + "|| within(com.dawidkotarba.playground.controllers..*)")
     public void loggingPointcut() {
         // intentionally left blank
     }

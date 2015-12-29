@@ -5,7 +5,7 @@ import com.dawidkotarba.playground.enums.ExceptionType;
 /**
  * Created by Dawid Kotarba on 13.11.2015.
  */
-public class InternalErrorException extends ApplicationRuntimeException {
+public class InternalErrorException extends AbstractApplicationRuntimeException {
 
     public InternalErrorException(String message) {
         super(ExceptionType.INTERNAL_ERROR, message);

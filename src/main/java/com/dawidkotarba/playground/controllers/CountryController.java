@@ -4,7 +4,11 @@ import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,12 +20,12 @@ import java.util.List;
 @RestController
 public class CountryController {
 
+    private CountryService countryService;
+
     @Autowired
     public CountryController(CountryService countryService) {
         this.countryService = countryService;
     }
-
-    private CountryService countryService;
 
     @RequestMapping(value = "/countries/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CountryDto> all() {

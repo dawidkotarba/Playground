@@ -5,13 +5,13 @@ package com.dawidkotarba.playground.integration.exceptions;
  */
 public class ValidationError {
 
+    private String fieldName;
+    private String message;
+
     public ValidationError(String fieldName, String message) {
         this.fieldName = fieldName;
         this.message = message;
     }
-
-    private String fieldName;
-    private String message;
 
     public String getFieldName() {
         return fieldName;

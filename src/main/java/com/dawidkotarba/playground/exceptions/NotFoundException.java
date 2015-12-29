@@ -5,7 +5,7 @@ import com.dawidkotarba.playground.enums.ExceptionType;
 /**
  * Created by Dawid Kotarba on 13.11.2015.
  */
-public class NotFoundException extends ApplicationRuntimeException {
+public class NotFoundException extends AbstractApplicationRuntimeException {
 
     public NotFoundException(String message) {
         super(ExceptionType.NOT_FOUND, message);

@@ -26,17 +26,17 @@ public abstract class AbstractDao {
         List<B> result = new ArrayList<>();
 
         source.forEach(entity -> {
-            B dto = null;
+                B dto = null;
 
-            try {
-                dto = targetClass.newInstance();
-            } catch (Exception e) {
-                throw new InternalErrorException("Cannot create instance of " + targetClass, e);
-            }
+                try {
+                    dto = targetClass.newInstance();
+                } catch (Exception e) {
+                    throw new InternalErrorException("Cannot create instance of " + targetClass, e);
+                }
 
-            BeanUtils.copyProperties(entity, dto);
-            result.add(dto);
-        });
+                BeanUtils.copyProperties(entity, dto);
+                result.add(dto);
+            });
 
         return result;
     }

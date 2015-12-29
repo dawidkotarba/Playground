@@ -16,12 +16,12 @@ import java.util.List;
 @Transactional
 public class CountryService {
 
+    private CountryDao countryDao;
+
     @Autowired
     public CountryService(CountryDao countryDao) {
         this.countryDao = countryDao;
     }
-
-    private CountryDao countryDao;
 
     public List<CountryDto> getAll() {
         return countryDao.getAll();

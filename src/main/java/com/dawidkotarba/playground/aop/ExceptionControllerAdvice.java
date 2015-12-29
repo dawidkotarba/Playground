@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class ExceptionControllerAdvice {
 
+    private ExceptionConverterService exceptionConverterService;
+
     @Autowired
     public ExceptionControllerAdvice(ExceptionConverterService exceptionConverterService) {
         this.exceptionConverterService = exceptionConverterService;
     }
-
-    private ExceptionConverterService exceptionConverterService;
 
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

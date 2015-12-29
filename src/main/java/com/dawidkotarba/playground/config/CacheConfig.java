@@ -18,7 +18,7 @@ import org.springframework.core.io.Resource;
 public class CacheConfig {
 
     @Value("classpath:ehcache.xml")
-    private Resource EH_CACHE_CONFIGURATION;
+    private Resource ehCacheConfiguration;
 
     @Bean
     public CacheManager getEhCacheManager() {
@@ -29,7 +29,7 @@ public class CacheConfig {
     @Bean
     public EhCacheManagerFactoryBean ehCacheFactoryBean() {
         EhCacheManagerFactoryBean factoryBean = new EhCacheManagerFactoryBean();
-        factoryBean.setConfigLocation(EH_CACHE_CONFIGURATION);
+        factoryBean.setConfigLocation(ehCacheConfiguration);
         factoryBean.setShared(true);
         return factoryBean;
     }

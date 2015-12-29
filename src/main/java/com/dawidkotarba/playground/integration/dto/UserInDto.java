@@ -9,8 +9,6 @@ import java.io.Serializable;
  */
 public class UserInDto implements Serializable {
 
-    private static final long serialVersionUID = 6434136545021517484L;
-
     @NotEmpty
     private String username;
 

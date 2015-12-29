@@ -33,10 +33,10 @@ import java.util.Properties;
 public class DatabaseConfig {
 
     @Value("classpath:db_create.sql")
-    private Resource H2_DB_CREATE_SCRIPT;
+    private Resource h2DbCreateScript;
 
     @Value("classpath:db_data_init.sql")
-    private Resource H2_DB_DATA_INIT_SCRIPT;
+    private Resource h2DbDataInitScript;
 
     @Bean
     public DataSource dataSource(Environment env) throws Exception {
@@ -70,8 +70,8 @@ public class DatabaseConfig {
 
     private DatabasePopulator databasePopulator() {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(H2_DB_CREATE_SCRIPT);
-        populator.addScript(H2_DB_DATA_INIT_SCRIPT);
+        populator.addScript(h2DbCreateScript);
+        populator.addScript(h2DbDataInitScript);
         return populator;
     }
 

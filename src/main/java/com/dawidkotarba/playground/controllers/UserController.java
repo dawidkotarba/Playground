@@ -5,7 +5,11 @@ import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import com.dawidkotarba.playground.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,12 +21,12 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    private UserService userService;
+
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
-    private UserService userService;
 
     @RequestMapping(value = "/users/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserOutDto> getAll() {

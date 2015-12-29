@@ -1,6 +1,10 @@
 package com.dawidkotarba.playground.model.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * Created by Dawid Kotarba on 30.11.2015.
@@ -10,8 +14,6 @@ import javax.persistence.*;
 @Table(name = "CAPITAL")
 @SequenceGenerator(name = "PK", sequenceName = "CAPITAL_SEQ", allocationSize = 1)
 public class Capital extends AbstractPersistableSequence {
-
-    private static final long serialVersionUID = -7662351495859298047L;
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;

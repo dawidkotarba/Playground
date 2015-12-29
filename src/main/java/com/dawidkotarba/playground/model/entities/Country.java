@@ -1,6 +1,14 @@
 package com.dawidkotarba.playground.model.entities;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,14 +21,12 @@ import java.util.Set;
 @SequenceGenerator(name = "PK", sequenceName = "COUNTRY_SEQ", allocationSize = 1)
 public class Country extends AbstractPersistableSequence {
 
-    private static final long serialVersionUID = -8939819042050493878L;
-
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CAPITAL")
-    private Capital capital;
+    private final ThreadLocal<Capital> capital = new ThreadLocal<>();
 
     @Column(name = "AREA")
     private int area;
@@ -46,11 +52,11 @@ public class Country extends AbstractPersistableSequence {
     }
 
     public Capital getCapital() {
-        return capital;
+        return capital.get();
     }
 
     public void setCapital(Capital capital) {
-        this.capital = capital;
+        this.capital.set(capital);
     }
 
     public int getArea() {

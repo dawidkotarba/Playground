@@ -13,8 +13,6 @@ import java.util.Set;
  */
 public class CountryDto implements Serializable {
 
-    private static final long serialVersionUID = -8761489229573227799L;
-
     @NotEmpty
     private String name;
 

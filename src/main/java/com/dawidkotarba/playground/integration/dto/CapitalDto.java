@@ -9,8 +9,6 @@ import java.io.Serializable;
  */
 public class CapitalDto implements Serializable {
 
-    private static final long serialVersionUID = 2780240656929513959L;
-
     @NotEmpty
     private String name;
 

@@ -7,8 +7,6 @@ import java.io.Serializable;
  */
 public class UserOutDto implements Serializable {
 
-    private static final long serialVersionUID = 2386228436272402026L;
-
     private int id;
 
     private String username;

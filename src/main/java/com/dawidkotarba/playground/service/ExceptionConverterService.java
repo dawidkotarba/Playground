@@ -1,7 +1,7 @@
 package com.dawidkotarba.playground.service;
 
 import com.dawidkotarba.playground.enums.ExceptionType;
-import com.dawidkotarba.playground.exceptions.ApplicationRuntimeException;
+import com.dawidkotarba.playground.exceptions.AbstractApplicationRuntimeException;
 import com.dawidkotarba.playground.integration.exceptions.ExceptionResponse;
 import com.dawidkotarba.playground.integration.exceptions.ValidationError;
 import com.dawidkotarba.playground.service.i18n.LocalizationService;
@@ -20,14 +20,14 @@ import java.util.UUID;
 @Service
 public class ExceptionConverterService {
 
+    private LocalizationService localizationService;
+
     @Autowired
     public ExceptionConverterService(LocalizationService localizationService) {
         this.localizationService = localizationService;
     }
 
-    private LocalizationService localizationService;
-
-    public ExceptionResponse convert(ApplicationRuntimeException e) {
+    public ExceptionResponse convert(AbstractApplicationRuntimeException e) {
         ExceptionResponse exceptionResponse = new ExceptionResponse();
         exceptionResponse.setUuid(e.getUuid());
         exceptionResponse.setExceptionType(e.getExceptionType());

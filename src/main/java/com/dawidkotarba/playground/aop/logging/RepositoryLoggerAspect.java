@@ -1,5 +1,6 @@
 package com.dawidkotarba.playground.aop.logging;
 
+import com.dawidkotarba.playground.exceptions.InternalErrorException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -18,9 +19,16 @@ public class RepositoryLoggerAspect {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Around("execution(* com.dawidkotarba.playground.dao.*.*(..))")
-    public Object log(ProceedingJoinPoint pjp) throws Throwable {
+    public Object log(ProceedingJoinPoint pjp) {
         long start = System.currentTimeMillis();
-        Object output = pjp.proceed();
+        Object output;
+
+        try {
+            output = pjp.proceed();
+        } catch (Throwable throwable) {
+            throw new InternalErrorException("Cannot proceed in repository logger aspect", throwable.getCause());
+        }
+
         long elapsedTime = System.currentTimeMillis() - start;
         LOGGER.info("Execution time of {}: {} ms", pjp.getSignature(), elapsedTime);
 
