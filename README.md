@@ -1,9 +1,7 @@
 # Spring Playground
-This is just a simple example of Spring-based app (with AngularJS in future). Dev still in progress.
+    This is just a simple example of Spring-based app (with AngularJS in future). Dev still in progress.
 
-https://travis-ci.org/dawidkotarba/Playground.svg
-
-
+[![Build Status](https://travis-ci.org/dawidkotarba/Playground.svg)]
 
 ## Tech stack:
 - build: Gradle (wrapper available)
