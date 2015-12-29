@@ -1,7 +1,7 @@
 # Spring Playground
     This is just a simple example of Spring-based app (with AngularJS in future). Dev still in progress.
 
-![Build Status](https://travis-ci.org/dawidkotarba/Playground.svg)
+![Build Status](https://travis-ci.org/dawidkotarba/Playground.svg) [![Coverage Status](https://coveralls.io/repos/dawidkotarba/Playground/badge.svg?branch=master&service=github)](https://coveralls.io/github/dawidkotarba/Playground?branch=master)
 
 ## Tech stack:
 - build: Gradle (wrapper available)
