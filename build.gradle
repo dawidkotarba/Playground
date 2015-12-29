@@ -4,12 +4,16 @@ buildscript {
     }
     dependencies {
         classpath('org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE')
+		classpath('org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0')
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
 
 jar {
     baseName = 'playground'
@@ -17,7 +21,11 @@ jar {
 }
 
 repositories {
+  mavenLocal()
+    jcenter()
     mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 idea {
@@ -50,6 +58,28 @@ dependencies {
     testCompile('org.jbehave:jbehave-core:4.0.4')
     testCompile('org.jbehave:jbehave-spring:4.0.4')
 }
+
+checkstyle {
+    toolVersion = "6.5"
+}
+
+jacoco {
+    toolVersion = "0.7.5.201505241946"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+tasks.coveralls {
+    dependsOn 'check'
+}
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
