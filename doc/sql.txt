@@ -12,10 +12,9 @@ SCRIPT NODATA TO 'h2db' --without data
 SCRIPT TO 'h2db'
 
 [useful queries]
-select * from country join capital on country.capital = capital.name;
-select * from capital join country on capital.name = country.capital;
-select * from capital left join country on capital.name = country.capital;
-select * from capital left join country on capital.name = country.capital where country.name is NULL;
-select ct.name, ct.population / ct.area, cp.name from country ct join capital cp on ct.capital = cp.name
-select * from country ct where ct.id in (select neighbour from neighbour nb where nb.country = 1)
-SELECT c.name FROM country c WHERE c.id not in (SELECT country FROM neighbour) -- countries without neighbour
+// unmatched capitals
+select * from capital left join country on capital.id = country.capital where country.name is NULL
+
+// neighbours i.e for Poland
+select * from country ct where ct.id in (select neighbour from neighbour nb where nb.country = (
+select ct.id from country ct where ct.name = 'Poland'));

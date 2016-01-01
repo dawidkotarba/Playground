@@ -49,3 +49,17 @@ CREATE CACHED TABLE PUBLIC.NEIGHBOUR (
   FOREIGN KEY (COUNTRY) REFERENCES COUNTRY(ID),
   FOREIGN KEY (NEIGHBOUR) REFERENCES COUNTRY(ID)
 );
+
+-- VIEWS
+CREATE VIEW POPULATION_DENSITY AS
+SELECT ct.name country, ct.population / ct.area population_density
+FROM country ct JOIN capital cp ON ct.capital = cp.id
+order by population_density desc;
+
+CREATE VIEW COUNTRIES_WITHOUT_NEIGHBOURS AS
+SELECT c.name country_wo_neighbour
+FROM country c WHERE c.id NOT IN (SELECT country FROM neighbour);
+
+CREATE VIEW COUNTRIES_AND_CAPS AS
+SELECT ct.name country, cp.name capital
+FROM country ct JOIN capital cp ON ct.capital = cp.id;
