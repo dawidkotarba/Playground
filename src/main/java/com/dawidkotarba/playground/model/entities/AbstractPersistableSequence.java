@@ -1,6 +1,5 @@
 package com.dawidkotarba.playground.model.entities;
 
-
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

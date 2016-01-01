@@ -26,7 +26,7 @@ public class Country extends AbstractPersistableSequence {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CAPITAL")
-    private final ThreadLocal<Capital> capital = new ThreadLocal<>();
+    private Capital capital = new Capital();
 
     @Column(name = "AREA")
     private int area;
@@ -52,11 +52,11 @@ public class Country extends AbstractPersistableSequence {
     }
 
     public Capital getCapital() {
-        return capital.get();
+        return capital;
     }
 
     public void setCapital(Capital capital) {
-        this.capital.set(capital);
+        this.capital = capital;
     }
 
     public int getArea() {
