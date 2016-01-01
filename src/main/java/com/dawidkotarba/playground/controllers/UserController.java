@@ -28,17 +28,17 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/users/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserOutDto> getAll() {
         return userService.getAll();
     }
 
-    @RequestMapping(value = "/users/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/users/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserOutDto> getByName(@PathVariable String name) {
         return userService.getByName(name);
     }
 
-    @RequestMapping(value = "/users/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/users", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public void add(@RequestBody @Valid UserInDto userInDto) {
         userService.add(userInDto);
     }
