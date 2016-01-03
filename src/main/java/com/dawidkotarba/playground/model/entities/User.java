@@ -10,8 +10,8 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "USER")
-@SequenceGenerator(name = "PK", sequenceName = "USER_SEQ", allocationSize = 1)
+@Table(name = "USERS")
+@SequenceGenerator(name = "PK", sequenceName = "USERS_SEQ", allocationSize = 1)
 public class User extends AbstractPersistableSequence {
 
     @Column(name = "USERNAME", nullable = false, unique = true)

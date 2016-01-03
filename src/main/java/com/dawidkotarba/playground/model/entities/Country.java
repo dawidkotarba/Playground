@@ -17,8 +17,8 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "COUNTRY")
-@SequenceGenerator(name = "PK", sequenceName = "COUNTRY_SEQ", allocationSize = 1)
+@Table(name = "COUNTRIES")
+@SequenceGenerator(name = "PK", sequenceName = "COUNTRIES_SEQ", allocationSize = 1)
 public class Country extends AbstractPersistableSequence {
 
     @Column(name = "NAME", nullable = false, unique = true)
@@ -38,7 +38,7 @@ public class Country extends AbstractPersistableSequence {
     private String currency;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "NEIGHBOUR",
+    @JoinTable(name = "NEIGHBOURS",
             joinColumns = {@JoinColumn(name = "COUNTRY")},
             inverseJoinColumns = {@JoinColumn(name = "NEIGHBOUR")})
     private Set<Country> neighbours = new HashSet<>();

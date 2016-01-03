@@ -11,8 +11,8 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "CAPITAL")
-@SequenceGenerator(name = "PK", sequenceName = "CAPITAL_SEQ", allocationSize = 1)
+@Table(name = "CAPITALS")
+@SequenceGenerator(name = "PK", sequenceName = "CAPITALS_SEQ", allocationSize = 1)
 public class Capital extends AbstractPersistableSequence {
 
     @Column(name = "NAME", nullable = false, unique = true)
