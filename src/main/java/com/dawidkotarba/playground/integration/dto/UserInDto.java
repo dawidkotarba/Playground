@@ -2,6 +2,7 @@ package com.dawidkotarba.playground.integration.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -9,10 +10,10 @@ import java.io.Serializable;
  */
 public class UserInDto implements Serializable {
 
-    @NotEmpty
+    @NotNull
     private String username;
 
-    @NotEmpty
+    @NotNull
     private String password;
 
     private boolean enabled;

@@ -1,7 +1,6 @@
 package com.dawidkotarba.playground.integration.dto;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -9,7 +8,7 @@ import java.io.Serializable;
  */
 public class CapitalDto implements Serializable {
 
-    @NotEmpty
+    @NotNull
     private String name;
 
     private int population;
