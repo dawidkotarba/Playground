@@ -25,7 +25,7 @@ From main folder:
 
 All logs will be stored in "/opt/apps/webdata/weblogs" folder.
 
-#### Pages (providing Tomcat runs on default 8080):
+#### Pages (provided Tomcat runs on default 8080):
 - localhost:8080/login --> default login page
 - localhost:8080/db --> H2 console (url: jdbc:h2:mem:testdb, user: sa, pwd: <blank>)
 - localhost:8080/swagger-ui.html --> SwaggerUI
