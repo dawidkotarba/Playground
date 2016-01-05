@@ -26,8 +26,9 @@ public class CountryAssembler {
         BeanUtils.copyProperties(country.getCapital(), capitalDto);
 
         countryDto.setCapital(capitalDto);
-		
-		 country.getNeighbours().forEach(neighbour -> countryDto.getNeighbourCountriesNames().add(neighbour.getName()));
+
+        country.getNeighbours().forEach(neighbour ->
+                countryDto.getNeighbourCountriesNames().add(neighbour.getName()));
 
         return countryDto;
     }

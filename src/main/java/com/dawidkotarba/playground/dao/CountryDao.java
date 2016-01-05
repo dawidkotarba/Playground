@@ -25,7 +25,6 @@ public class CountryDao extends AbstractDao {
 
     public List<CountryDto> getAll() {
         List<Country> result = new JPAQuery(entityManager).from(country).fetchAll().list(country);
-//        List<Country> result = entityManager.createQuery("SELECT c FROM Country c").getResultList();
         return CountryAssembler.convertToDto(result);
     }
 
@@ -34,7 +33,6 @@ public class CountryDao extends AbstractDao {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
 
         List<Country> result = new JPAQuery(entityManager).from(country).where(country.name.containsIgnoreCase(name)).list(country);
-//        List<Country> result = entityManager.createQuery("SELECT c FROM Country c where c.name LIKE :name").setParameter("name", name).getResultList();
         return CountryAssembler.convertToDto(result);
     }
 

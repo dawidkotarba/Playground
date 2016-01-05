@@ -18,6 +18,7 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping(value = "/countries")
 public class CountryController {
 
     private CountryService countryService;
@@ -27,17 +28,17 @@ public class CountryController {
         this.countryService = countryService;
     }
 
-    @RequestMapping(value = "/countries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CountryDto> all() {
         return countryService.getAll();
     }
 
-    @RequestMapping(value = "/countries/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CountryDto> getByName(@PathVariable String name) {
         return countryService.getByName(name);
     }
 
-    @RequestMapping(value = "/countries", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public void add(@RequestBody @Valid CountryDto countryDto) {
         countryService.add(countryDto);
     }
