@@ -13,10 +13,10 @@ import org.springframework.security.authentication.event.AbstractAuthenticationE
 @Configuration
 public class AuditEventLogConfiguration implements ApplicationListener<AbstractAuthenticationEvent> {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void onApplicationEvent(AbstractAuthenticationEvent event) {
-        LOGGER.info("Authentication event: " + event);
+        logger.info("Authentication event: " + event);
     }
 }

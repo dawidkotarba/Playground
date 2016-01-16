@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RepositoryLoggerAspect {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Around("execution(* com.dawidkotarba.playground.dao.*.*(..))")
     public Object log(ProceedingJoinPoint pjp) {
@@ -30,7 +30,7 @@ public class RepositoryLoggerAspect {
         }
 
         long elapsedTime = System.currentTimeMillis() - start;
-        LOGGER.info("Execution time of {}: {} ms", pjp.getSignature(), elapsedTime);
+        logger.info("Execution time of {}: {} ms", pjp.getSignature(), elapsedTime);
 
         return output;
     }
