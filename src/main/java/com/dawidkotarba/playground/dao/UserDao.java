@@ -1,5 +1,6 @@
 package com.dawidkotarba.playground.dao;
 
+import com.dawidkotarba.playground.exceptions.NotFoundException;
 import com.dawidkotarba.playground.integration.dto.UserInDto;
 import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import com.dawidkotarba.playground.integration.util.IntegrationHelper;
@@ -48,6 +49,18 @@ public class UserDao {
         User user = new User();
         BeanUtils.copyProperties(userInDto, user);
         entityManager.persist(user);
+    }
+
+    public void delete(String name) {
+        Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
+        List<User> result = userRepository.findByUsername(name);
+
+        if (result.isEmpty()) {
+            throw new NotFoundException("Cannot find a country with name " + name);
+        }
+
+        User country = result.get(0);
+        entityManager.remove(country);
     }
 
 }

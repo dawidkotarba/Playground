@@ -49,6 +49,11 @@ public class UserController {
         userService.add(userInDto);
     }
 
+    @RequestMapping(value = "/{name}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void delete(@PathVariable String name) {
+        userService.delete(name);
+    }
+
     private List<Resource<UserOutDto>> createResourceResults(List<UserOutDto> dtos) {
         List<Resource<UserOutDto>> result = new ArrayList<>();
 

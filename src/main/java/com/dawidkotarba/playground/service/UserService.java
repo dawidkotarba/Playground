@@ -28,6 +28,10 @@ public class UserService {
         userDao.add(userInDto);
     }
 
+    public void delete(String name) {
+        userDao.delete(name);
+    }
+
     public List<UserOutDto> getByName(String name) {
         return userDao.getByName(name);
     }
