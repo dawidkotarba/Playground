@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -21,7 +23,10 @@ import java.util.List;
 
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
-public class UserDao extends AbstractDao {
+public class UserDao {
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Resource
     private UserRepository userRepository;
