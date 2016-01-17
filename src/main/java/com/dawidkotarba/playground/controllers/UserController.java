@@ -36,33 +36,27 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Resource<UserOutDto>> getAll() {
-        List<Resource<UserOutDto>> result = new ArrayList<>();
-
-        for (UserOutDto dto : userService.getAll()) {
-            Resource resource = new Resource(dto);
-            resource.add(linkTo(methodOn(UserController.class).getByName(dto.getUsername())).withSelfRel());
-            result.add(resource);
-        }
-
-        return result;
+        return createResourceResults(userService.getAll());
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Resource<UserOutDto>> getByName(@PathVariable String name) {
-
-        List<Resource<UserOutDto>> result = new ArrayList<>();
-
-        for (UserOutDto dto : userService.getByName(name)) {
-            Resource resource = new Resource(dto);
-            resource.add(linkTo(methodOn(UserController.class).getByName(dto.getUsername())).withSelfRel());
-            result.add(resource);
-        }
-
-        return result;
+        return createResourceResults(userService.getByName(name));
     }
 
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public void add(@RequestBody @Valid UserInDto userInDto) {
         userService.add(userInDto);
+    }
+
+    private List<Resource<UserOutDto>> createResourceResults(List<UserOutDto> dtos) {
+        List<Resource<UserOutDto>> result = new ArrayList<>();
+
+        for (UserOutDto dto : dtos) {
+            Resource resource = new Resource(dto);
+            resource.add(linkTo(methodOn(UserController.class).getByName(dto.getUsername())).withSelfRel());
+            result.add(resource);
+        }
+        return result;
     }
 }

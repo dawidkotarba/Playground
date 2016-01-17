@@ -35,32 +35,27 @@ public class CountryController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Resource<CountryDto>> getAll() {
-        List<Resource<CountryDto>> result = new ArrayList<>();
-
-        for (CountryDto dto : countryService.getAll()) {
-            Resource resource = new Resource(dto);
-            resource.add(linkTo(methodOn(CountryController.class).getByName(dto.getName())).withSelfRel());
-            result.add(resource);
-        }
-
-        return result;
+        return createResourceResults(countryService.getAll());
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Resource<CountryDto>> getByName(@PathVariable String name) {
-        List<Resource<CountryDto>> result = new ArrayList<>();
-
-        for (CountryDto dto : countryService.getByName(name)) {
-            Resource resource = new Resource(dto);
-            resource.add(linkTo(methodOn(CountryController.class).getByName(dto.getName())).withSelfRel());
-            result.add(resource);
-        }
-
-        return result;
+        return createResourceResults(countryService.getByName(name));
     }
 
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public void add(@RequestBody @Valid CountryDto countryDto) {
         countryService.add(countryDto);
+    }
+
+    private List<Resource<CountryDto>> createResourceResults(List<CountryDto> dtos) {
+        List<Resource<CountryDto>> result = new ArrayList<>();
+
+        for (CountryDto dto : dtos) {
+            Resource resource = new Resource(dto);
+            resource.add(linkTo(methodOn(CountryController.class).getByName(dto.getName())).withSelfRel());
+            result.add(resource);
+        }
+        return result;
     }
 }
