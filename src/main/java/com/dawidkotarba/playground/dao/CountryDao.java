@@ -46,4 +46,57 @@ public class CountryDao {
         Preconditions.checkNotNull(countryDto, "countryDto cannot be null");
         entityManager.persist(CountryAssembler.convert(countryDto));
     }
+
+    /*
+    // ================ example of JPA Criteria API ================
+
+        public List<CountryDto> getAll() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Country> countryCriteriaQuery = criteriaBuilder.createQuery(Country.class);
+
+        Root<Country> from = countryCriteriaQuery.from(Country.class);
+        CriteriaQuery<Country> select = countryCriteriaQuery.select(from);
+
+        TypedQuery<Country> typedQuery = entityManager.createQuery(select);
+        List<Country> result = typedQuery.getResultList();
+
+        return CountryAssembler.convertToDto(result);
+    }
+
+    @Cacheable("countriesCache")
+    public List<CountryDto> getByName(String name) {
+        Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Country> countryCriteriaQuery = criteriaBuilder.createQuery(Country.class);
+
+        Root<Country> from = countryCriteriaQuery.from(Country.class);
+        CriteriaQuery<Country> select = countryCriteriaQuery.select(from);
+
+        Predicate namePredicate = criteriaBuilder.equal(from.get("name"), name);
+
+        select.where(namePredicate);
+
+        TypedQuery<Country> typedQuery = entityManager.createQuery(select);
+        List<Country> result = typedQuery.getResultList();
+
+        return CountryAssembler.convertToDto(result);
+    }
+
+    // ================ example of Querydsl ================
+
+      public List<CountryDto> getAll() {
+        List<Country> result = new JPAQuery(entityManager).from(country).fetchAll().list(country);
+        return CountryAssembler.convertToDto(result);
+    }
+
+    @Cacheable("countriesCache")
+    public List<CountryDto> getByName(String name) {
+        Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
+
+        List<Country> result = new JPAQuery(entityManager).from(country).where(country.name.containsIgnoreCase(name)).list(country);
+        return CountryAssembler.convertToDto(result);
+    }
+
+     */
 }
