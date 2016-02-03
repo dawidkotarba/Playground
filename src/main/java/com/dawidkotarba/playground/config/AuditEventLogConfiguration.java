@@ -1,7 +1,6 @@
 package com.dawidkotarba.playground.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.event.AbstractAuthenticationEvent;
@@ -11,12 +10,11 @@ import org.springframework.security.authentication.event.AbstractAuthenticationE
  */
 
 @Configuration
+@Slf4j
 public class AuditEventLogConfiguration implements ApplicationListener<AbstractAuthenticationEvent> {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void onApplicationEvent(AbstractAuthenticationEvent event) {
-        logger.info("Authentication event: " + event);
+        log.info("Authentication event: " + event);
     }
 }

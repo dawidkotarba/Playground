@@ -1,7 +1,6 @@
 package com.dawidkotarba.playground.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +13,16 @@ import javax.persistence.Query;
  */
 
 @Service
+@Slf4j
 public class HeartBeatService {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
-
     @Scheduled(fixedDelay = 60000)
     public void doHeartBeat() {
         Query heartBeatQuery = entityManager.createNativeQuery("SELECT 1 FROM DUAL");
-        logger.info("Heartbeat result : " + heartBeatQuery.getSingleResult());
+        log.info("Heartbeat result : " + heartBeatQuery.getSingleResult());
     }
 
 }
