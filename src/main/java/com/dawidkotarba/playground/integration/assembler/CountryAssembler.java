@@ -58,10 +58,35 @@ public class CountryAssembler {
     }
 
     public static Country convert(CountryDto countryDto) {
-        Country country = new Country();
-        BeanUtils.copyProperties(countryDto, country);
-        country.setCapital(assembleCapital(countryDto, country));
+        Country country = assembleCountry(countryDto);
+        assembleCities(countryDto.getCities(), country);
+
         return country;
+    }
+
+    private static Country assembleCountry(CountryDto countryDto) {
+        Country country = new Country();
+        country.setName(countryDto.getName());
+        country.setCapital(assembleCapital(countryDto, country));
+        country.setArea(countryDto.getArea());
+        country.setCurrency(countryDto.getCurrency());
+        country.setPopulation(countryDto.getPopulation());
+
+        return country;
+    }
+
+    private static void assembleCities(Set<CityDto> citiesDto, Country country) {
+        Set<City> cities = new LinkedHashSet<>();
+        citiesDto.forEach(cityDto -> {
+            City city = new City();
+            city.setName(cityDto.getName());
+            city.setPopulation(cityDto.getPopulation());
+            city.setCountry(country);
+
+            cities.add(city);
+        });
+
+        country.setCities(cities);
     }
 
     private static City assembleCapital(CountryDto countryDto, Country country) {

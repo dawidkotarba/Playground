@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * This advice catches all exceptions thrown by backend
- * and creates a localized user-readable response {@link ExceptionResponse}.
+ * and creates a localized user-readable {@link ExceptionResponse}.
  *
  * @author Dawid Kotarba
- * @since 13.11.2015
  * @see com.dawidkotarba.playground.service.i18n.LocalizationService
  * @see com.dawidkotarba.playground.exceptions.AbstractApplicationRuntimeException
  */

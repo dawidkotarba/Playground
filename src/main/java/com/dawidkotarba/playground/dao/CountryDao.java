@@ -1,5 +1,6 @@
 package com.dawidkotarba.playground.dao;
 
+import com.dawidkotarba.playground.annotations.TransactionalRepository;
 import com.dawidkotarba.playground.integration.assembler.CountryAssembler;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.model.entities.Country;
@@ -20,8 +21,7 @@ import java.util.List;
  * Created by Dawid Kotarba on 12.11.2015.
  */
 
-@Repository
-@Transactional(propagation = Propagation.REQUIRED)
+@TransactionalRepository
 public class CountryDao {
 
     @PersistenceContext

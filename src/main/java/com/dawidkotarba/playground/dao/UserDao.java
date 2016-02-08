@@ -1,5 +1,6 @@
 package com.dawidkotarba.playground.dao;
 
+import com.dawidkotarba.playground.annotations.TransactionalRepository;
 import com.dawidkotarba.playground.exceptions.NotFoundException;
 import com.dawidkotarba.playground.integration.dto.UserInDto;
 import com.dawidkotarba.playground.integration.dto.UserOutDto;
@@ -9,9 +10,6 @@ import com.dawidkotarba.playground.repository.UserRepository;
 import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -22,8 +20,7 @@ import java.util.List;
  * Created by Dawid Kotarba on 15.11.2015.
  */
 
-@Repository
-@Transactional(propagation = Propagation.REQUIRED)
+@TransactionalRepository
 public class UserDao {
 
     @PersistenceContext
