@@ -14,9 +14,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Created by Dawid Kotarba on 13.11.2015.
+ * This advice catches all exceptions thrown by backend
+ * and creates a localized user-readable response {@link ExceptionResponse}.
+ *
+ * @author Dawid Kotarba
+ * @since 13.11.2015
+ * @see com.dawidkotarba.playground.service.i18n.LocalizationService
+ * @see com.dawidkotarba.playground.exceptions.AbstractApplicationRuntimeException
  */
-
 @ControllerAdvice
 public class ExceptionControllerAdvice {
 

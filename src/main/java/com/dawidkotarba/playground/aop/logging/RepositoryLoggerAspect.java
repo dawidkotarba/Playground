@@ -1,6 +1,7 @@
 package com.dawidkotarba.playground.aop.logging;
 
 import com.dawidkotarba.playground.exceptions.InternalErrorException;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,9 +15,8 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
+@Slf4j
 public class RepositoryLoggerAspect {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Around("execution(* com.dawidkotarba.playground.dao.*.*(..))")
     public Object log(ProceedingJoinPoint pjp) {
@@ -30,7 +30,7 @@ public class RepositoryLoggerAspect {
         }
 
         long elapsedTime = System.currentTimeMillis() - start;
-        logger.info("Execution time of {}: {} ms", pjp.getSignature(), elapsedTime);
+        log.info("Execution time of {}: {} ms", pjp.getSignature(), elapsedTime);
 
         return output;
     }
