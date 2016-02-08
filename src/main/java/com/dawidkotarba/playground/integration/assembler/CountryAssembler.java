@@ -59,14 +59,16 @@ public class CountryAssembler {
     public static Country convert(CountryDto countryDto) {
         Country country = new Country();
         BeanUtils.copyProperties(countryDto, country);
+        country.setCapital(assembleCapital(countryDto, country));
+        return country;
+    }
 
+    private static City assembleCapital(CountryDto countryDto, Country country) {
         City capital = new City();
         capital.setName(countryDto.getCapital().getName());
         capital.setPopulation(countryDto.getCapital().getPopulation());
         capital.setCountry(country);
-        country.setCapital(capital);
-
-        return country;
+        return capital;
     }
 
     public static List<CountryDto> convertToDto(List<Country> countries) {

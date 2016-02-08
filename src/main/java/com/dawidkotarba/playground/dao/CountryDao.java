@@ -44,7 +44,9 @@ public class CountryDao {
 
     public void add(CountryDto countryDto) {
         Preconditions.checkNotNull(countryDto, "countryDto cannot be null");
-        entityManager.persist(CountryAssembler.convert(countryDto));
+
+        Country country = CountryAssembler.convert(countryDto);
+        entityManager.persist(country);
     }
 
     /*
