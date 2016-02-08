@@ -13,9 +13,9 @@ CREATE USER IF NOT EXISTS SA
 
 -- SEQUENCE
 CREATE SEQUENCE users_seq INCREMENT BY 1;
-CREATE SEQUENCE capitals_seq INCREMENT BY 1;
 CREATE SEQUENCE countries_seq INCREMENT BY 1;
 CREATE SEQUENCE neighbours_seq INCREMENT BY 1;
+CREATE SEQUENCE cities_seq INCREMENT BY 1;
 
 -- TABLES
 CREATE TABLE users (
@@ -26,9 +26,9 @@ CREATE TABLE users (
   ROLE     VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE capitals (
-  ID INT NOT NULL DEFAULT nextval('capitals_seq') PRIMARY KEY,
-  NAME       VARCHAR(50) NOT NULL UNIQUE,
+CREATE TABLE cities (
+  ID INT NOT NULL DEFAULT nextval('cities_seq') PRIMARY KEY,
+  NAME VARCHAR(50) NOT NULL UNIQUE,
   POPULATION INT
 );
 
@@ -39,27 +39,27 @@ CREATE TABLE countries (
   AREA       INT,
   POPULATION INT,
   CURRENCY   VARCHAR(3),
-  FOREIGN KEY (CAPITAL) REFERENCES CAPITALS(ID)
+  FOREIGN KEY (CAPITAL) REFERENCES cities(ID)
 );
 
 CREATE TABLE neighbours (
   ID INT NOT NULL DEFAULT nextval('neighbours_seq') PRIMARY KEY,
   COUNTRY    INT NOT NULL,
   NEIGHBOUR  INT NOT NULL,
-  FOREIGN KEY (COUNTRY) REFERENCES COUNTRIES(ID),
-  FOREIGN KEY (NEIGHBOUR) REFERENCES COUNTRIES(ID)
+  FOREIGN KEY (COUNTRY) REFERENCES countries(ID),
+  FOREIGN KEY (NEIGHBOUR) REFERENCES countries(ID)
 );
 
 -- VIEWS
-CREATE VIEW POPULATION_DENSITY AS
-SELECT ct.name country, ct.population / ct.area population_density
-FROM countries ct JOIN capitals cp ON ct.capital = cp.id
-order by population_density desc;
-
-CREATE VIEW COUNTRIES_WITHOUT_NEIGHBOURS AS
-SELECT c.name countries_wo_neighbour
-FROM countries c WHERE c.id NOT IN (SELECT country FROM neighbours);
-
-CREATE VIEW COUNTRIES_AND_CAPS AS
-SELECT ct.name countries, cp.name capitals
-FROM countries ct JOIN capitals cp ON ct.capital = cp.id;
+-- CREATE VIEW POPULATION_DENSITY AS
+-- SELECT ct.name country, ct.population / ct.area population_density
+-- FROM countries ct JOIN cities cp ON ct.capital = cp.id
+-- order by population_density desc;
+--
+-- CREATE VIEW COUNTRIES_WITHOUT_NEIGHBOURS AS
+-- SELECT c.name countries_wo_neighbour
+-- FROM countries c WHERE c.id NOT IN (SELECT country FROM neighbours);
+--
+-- CREATE VIEW COUNTRIES_AND_CAPS AS
+-- SELECT ct.name countries, cp.name cities
+-- FROM countries ct JOIN capitals cp ON ct.capital = cp.id;

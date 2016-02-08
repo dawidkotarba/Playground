@@ -3,13 +3,13 @@ package com.dawidkotarba.playground.integration.dto;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 /**
- * Created by Dawid Kotarba on 30.11.2015.
+ * Created by Dawid Kotarba on 08.02.2016.
  */
+
 @Data
-public class CapitalDto implements Serializable {
+public class CityDto {
 
     @NotNull
     private String name;

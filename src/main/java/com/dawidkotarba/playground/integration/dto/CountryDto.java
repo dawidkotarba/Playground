@@ -19,7 +19,7 @@ public class CountryDto implements Serializable {
     private String name;
 
     @Valid
-    private CapitalDto capital = new CapitalDto();
+    private CityDto capital = new CityDto();
 
     private int area;
 

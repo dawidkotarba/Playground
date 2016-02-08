@@ -1,8 +1,8 @@
 package com.dawidkotarba.playground.integration.assembler;
 
-import com.dawidkotarba.playground.integration.dto.CapitalDto;
+import com.dawidkotarba.playground.integration.dto.CityDto;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
-import com.dawidkotarba.playground.model.entities.Capital;
+import com.dawidkotarba.playground.model.entities.City;
 import com.dawidkotarba.playground.model.entities.Country;
 import org.springframework.beans.BeanUtils;
 
@@ -22,8 +22,9 @@ public class CountryAssembler {
         CountryDto countryDto = new CountryDto();
         BeanUtils.copyProperties(country, countryDto);
 
-        CapitalDto capitalDto = new CapitalDto();
-        BeanUtils.copyProperties(country.getCapital(), capitalDto);
+        CityDto capitalDto = new CityDto();
+        capitalDto.setName(country.getCapital().getName());
+        capitalDto.setPopulation(country.getCapital().getPopulation());
 
         countryDto.setCapital(capitalDto);
 
@@ -37,9 +38,11 @@ public class CountryAssembler {
         Country country = new Country();
         BeanUtils.copyProperties(countryDto, country);
 
-        Capital capital = new Capital();
-        BeanUtils.copyProperties(countryDto.getCapital(), capital);
+        City capital = new City();
+        capital.setName(countryDto.getCapital().getName());
+        capital.setPopulation(countryDto.getCapital().getPopulation());
         country.setCapital(capital);
+
         return country;
     }
 
