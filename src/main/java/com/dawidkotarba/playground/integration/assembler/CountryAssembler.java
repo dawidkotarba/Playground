@@ -23,17 +23,18 @@ public class CountryAssembler {
     public static CountryDto convert(Country country) {
         CountryDto countryDto = new CountryDto();
         BeanUtils.copyProperties(country, countryDto);
-
-        CityDto capitalDto = new CityDto();
-        capitalDto.setName(country.getCapital().getName());
-        capitalDto.setPopulation(country.getCapital().getPopulation());
-
-        countryDto.setCapital(capitalDto);
+        countryDto.setCapital(assembleCapital(country.getCapital()));
         countryDto.setCities(assembleCities(country));
-
         countryDto.setNeighbourCountriesNames(assembleNeighbourNames(country));
 
         return countryDto;
+    }
+
+    private static CityDto assembleCapital(City capital) {
+        CityDto capitalDto = new CityDto();
+        capitalDto.setName(capital.getName());
+        capitalDto.setPopulation(capital.getPopulation());
+        return capitalDto;
     }
 
     private static Set<String> assembleNeighbourNames(Country country) {
@@ -73,12 +74,6 @@ public class CountryAssembler {
 
     public static List<CountryDto> convertToDto(List<Country> countries) {
         List<CountryDto> result = new ArrayList<>();
-        countries.forEach(country -> result.add(convert(country)));
-        return result;
-    }
-
-    public static List<Country> convertToEntity(List<CountryDto> countries) {
-        List<Country> result = new ArrayList<>();
         countries.forEach(country -> result.add(convert(country)));
         return result;
     }
