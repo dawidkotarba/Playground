@@ -1,12 +1,3 @@
-SET CACHE_SIZE 16384;
-SET TRACE_LEVEL_SYSTEM_OUT 0;
-SET DEFAULT_TABLE_TYPE 0;
-SET CLUSTER '';
-SET DEFAULT_LOCK_TIMEOUT 1000;
-SET WRITE_DELAY 500;
-SET TRACE_LEVEL_FILE 1;
-;
-
 -- USERS
 CREATE USER IF NOT EXISTS SA
   SALT '6a0e04afeac6bccc' HASH '065c94fe8fb12546403bd50ab883a59cd664b25ceb9f7bd8a1420a74099d0d3b' ADMIN;
@@ -19,48 +10,48 @@ CREATE SEQUENCE cities_seq INCREMENT BY 1;
 
 -- TABLES
 CREATE TABLE users (
-  ID INT NOT NULL DEFAULT nextval('users_seq') PRIMARY KEY,
-  USERNAME VARCHAR(50) NOT NULL UNIQUE,
-  PASSWORD VARCHAR(50) NOT NULL,
-  ENABLED  BOOLEAN     NOT NULL,
-  ROLE     VARCHAR(20) NOT NULL
+  id INT NOT NULL DEFAULT nextval('users_seq') PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(50) NOT NULL,
+  enabled  BOOLEAN     NOT NULL,
+  role     VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE cities (
-  ID INT NOT NULL DEFAULT nextval('cities_seq') PRIMARY KEY,
-  NAME VARCHAR(50) NOT NULL UNIQUE,
-  COUNTRY INT,
-  POPULATION INT
+  id INT NOT NULL DEFAULT nextval('cities_seq') PRIMARY KEY,
+  name VARCHAR(50) NOT NULL UNIQUE,
+  country INT,
+  population INT
 );
 
 CREATE TABLE countries (
-  ID INT NOT NULL DEFAULT nextval('countries_seq') PRIMARY KEY,
-  NAME       VARCHAR(50) NOT NULL UNIQUE,
-  CAPITAL    INT,
-  AREA       INT,
-  POPULATION INT,
-  CURRENCY   VARCHAR(3),
-  FOREIGN KEY (CAPITAL) REFERENCES cities(ID)
+  id INT NOT NULL DEFAULT nextval('countries_seq') PRIMARY KEY,
+  name       VARCHAR(50) NOT NULL UNIQUE,
+  capital    INT,
+  area       INT,
+  population INT,
+  currency   VARCHAR(3),
+  FOREIGN KEY (capital) REFERENCES cities(id)
 );
 
 CREATE TABLE neighbours (
-  ID INT NOT NULL DEFAULT nextval('neighbours_seq') PRIMARY KEY,
-  COUNTRY    INT NOT NULL,
-  NEIGHBOUR  INT NOT NULL,
-  FOREIGN KEY (COUNTRY) REFERENCES countries(ID),
-  FOREIGN KEY (NEIGHBOUR) REFERENCES countries(ID)
+  id INT NOT NULL DEFAULT nextval('neighbours_seq') PRIMARY KEY,
+  country    INT NOT NULL,
+  neighbour  INT NOT NULL,
+  FOREIGN KEY (country) REFERENCES countries(id),
+  FOREIGN KEY (neighbour) REFERENCES countries(id)
 );
 
 -- VIEWS
--- CREATE VIEW POPULATION_DENSITY AS
--- SELECT ct.name country, ct.population / ct.area population_density
--- FROM countries ct JOIN cities cp ON ct.capital = cp.id
--- order by population_density desc;
---
--- CREATE VIEW COUNTRIES_WITHOUT_NEIGHBOURS AS
--- SELECT c.name countries_wo_neighbour
--- FROM countries c WHERE c.id NOT IN (SELECT country FROM neighbours);
---
--- CREATE VIEW COUNTRIES_AND_CAPS AS
--- SELECT ct.name countries, cp.name cities
--- FROM countries ct JOIN capitals cp ON ct.capital = cp.id;
+CREATE VIEW POPULATION_DENSITY AS
+SELECT ct.name country, ct.population / ct.area population_density
+FROM countries ct JOIN cities cp ON ct.capital = cp.id
+order by population_density desc;
+
+CREATE VIEW COUNTRIES_WITHOUT_NEIGHBOURS AS
+SELECT c.name countries_wo_neighbour
+FROM countries c WHERE c.id NOT IN (SELECT country FROM neighbours);
+
+CREATE VIEW COUNTRIES_AND_CAPS AS
+SELECT ct.name countries, cp.name cities
+FROM countries ct JOIN countries cp ON ct.capital = cp.id;
