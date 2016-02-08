@@ -4,12 +4,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.util.HashSet;
+import javax.persistence.JoinTable;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -28,6 +29,9 @@ public class Country extends AbstractPersistableSequence {
     @JoinColumn(name = "CAPITAL")
     private City capital = new City();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    private Set<City> cities = new LinkedHashSet<>();
+
     @Column(name = "AREA")
     private int area;
 
@@ -41,7 +45,7 @@ public class Country extends AbstractPersistableSequence {
     @JoinTable(name = "NEIGHBOURS",
             joinColumns = {@JoinColumn(name = "COUNTRY")},
             inverseJoinColumns = {@JoinColumn(name = "NEIGHBOUR")})
-    private Set<Country> neighbours = new HashSet<>();
+    private Set<Country> neighbours = new LinkedHashSet<>();
 
     public String getName() {
         return name;
@@ -89,5 +93,13 @@ public class Country extends AbstractPersistableSequence {
 
     public void setNeighbours(Set<Country> neighbours) {
         this.neighbours = neighbours;
+    }
+
+    public Set<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(Set<City> cities) {
+        this.cities = cities;
     }
 }

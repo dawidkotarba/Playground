@@ -1,6 +1,8 @@
 package com.dawidkotarba.playground.integration.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
@@ -9,10 +11,13 @@ import javax.validation.constraints.NotNull;
  */
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CityDto {
 
     @NotNull
     private String name;
 
     private int population;
+
 }

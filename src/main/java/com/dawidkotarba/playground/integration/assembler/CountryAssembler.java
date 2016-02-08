@@ -7,7 +7,9 @@ import com.dawidkotarba.playground.model.entities.Country;
 import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Dawid Kotarba on 01.12.2015.
@@ -27,11 +29,31 @@ public class CountryAssembler {
         capitalDto.setPopulation(country.getCapital().getPopulation());
 
         countryDto.setCapital(capitalDto);
+        countryDto.setCities(assembleCities(country));
 
-        country.getNeighbours().forEach(neighbour ->
-                countryDto.getNeighbourCountriesNames().add(neighbour.getName()));
+        countryDto.setNeighbourCountriesNames(assembleNeighbourNames(country));
 
         return countryDto;
+    }
+
+    private static Set<String> assembleNeighbourNames(Country country) {
+        Set<String> neighboursNames = new LinkedHashSet<>();
+        country.getNeighbours().forEach(neighbour ->
+                neighboursNames.add(neighbour.getName()));
+
+        return neighboursNames;
+    }
+
+    private static Set<CityDto> assembleCities(Country country) {
+        Set<CityDto> cites = new LinkedHashSet<>();
+        country.getCities().forEach(city -> {
+                    CityDto cityDto = new CityDto();
+                    cityDto.setName(city.getName());
+                    cityDto.setPopulation(city.getPopulation());
+                    cites.add(cityDto);
+                }
+        );
+        return cites;
     }
 
     public static Country convert(CountryDto countryDto) {
@@ -41,6 +63,7 @@ public class CountryAssembler {
         City capital = new City();
         capital.setName(countryDto.getCapital().getName());
         capital.setPopulation(countryDto.getCapital().getPopulation());
+        capital.setCountry(country);
         country.setCapital(capital);
 
         return country;

@@ -1,7 +1,10 @@
 package com.dawidkotarba.playground.model.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,6 +22,10 @@ public class City extends AbstractPersistableSequence {
     @Column(name = "POPULATION")
     private int population;
 
+    @ManyToOne
+    @JoinColumn(name = "COUNTRY")
+    private Country country;
+
     public String getName() {
         return name;
     }
@@ -33,5 +40,13 @@ public class City extends AbstractPersistableSequence {
 
     public void setPopulation(int population) {
         this.population = population;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

@@ -4,16 +4,16 @@ INSERT INTO public.users (username, password, enabled, role) VALUES
   ('user', 'user', TRUE, 'ROLE_USER');
 
 -- CITIES TABLE
-INSERT INTO public.cities (name, population) VALUES
-  ('Warsaw', 1735442),
-  ('Krakow', null),
-  ('Lodz', null),
-  ('Poznan', null),
-  ('Gdansk', null),
-  ('Berlin', 3440991),
-  ('London', 8416535),
-  ('Moscow', 12100000),
-  ('Amsterdam', 801200);
+INSERT INTO public.cities (name, country, population) VALUES
+  ('Warsaw', 1, 1735442),
+  ('Krakow', 1, 0),
+  ('Lodz', 1, 0),
+  ('Poznan', 1, 0),
+  ('Gdansk', 1, 0),
+  ('Berlin', 2, 3440991),
+  ('London', 3, 8416535),
+  ('Amsterdam', 4, 801200),
+  ('Moscow', 5, 12100000);
 
 -- COUNTRY TABLE
 INSERT INTO public.countries (name, capital, area, population, currency) VALUES
