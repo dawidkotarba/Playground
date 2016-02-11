@@ -1,5 +1,6 @@
 package com.dawidkotarba.playground.controllers;
 
+import com.dawidkotarba.playground.integration.ReportingServiceGateway;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class CountryController {
 
     private CountryService countryService;
+
+    @Autowired
+    private ReportingServiceGateway reportingServiceGateway;
 
     @Autowired
     public CountryController(CountryService countryService) {
@@ -57,5 +61,10 @@ public class CountryController {
             result.add(resource);
         }
         return result;
+    }
+
+    @RequestMapping(value = "/integration{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String testIntegration(@PathVariable String name) {
+        return reportingServiceGateway.generateReport(name);
     }
 }
