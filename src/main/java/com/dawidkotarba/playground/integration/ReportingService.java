@@ -4,9 +4,9 @@ import com.dawidkotarba.playground.model.entities.Country;
 import com.dawidkotarba.playground.repository.CountryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.integration.annotation.MessageEndpoint;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.Message;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Dawid Kotarba on 11.02.2016.
  */
 
-@Service
+@MessageEndpoint
 @Slf4j
 public class ReportingService {
 
