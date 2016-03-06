@@ -48,12 +48,12 @@ public class CountryAssembler {
     private static Set<CityDto> assembleCities(Country country) {
         Set<CityDto> cites = new LinkedHashSet<>();
         country.getCities().forEach(city -> {
-                    CityDto cityDto = new CityDto();
-                    cityDto.setName(city.getName());
-                    cityDto.setPopulation(city.getPopulation());
-                    cites.add(cityDto);
-                }
-        );
+                CityDto cityDto = new CityDto();
+                cityDto.setName(city.getName());
+                cityDto.setPopulation(city.getPopulation());
+                cites.add(cityDto);
+            });
+
         return cites;
     }
 
@@ -78,13 +78,13 @@ public class CountryAssembler {
     private static void assembleCities(Set<CityDto> citiesDto, Country country) {
         Set<City> cities = new LinkedHashSet<>();
         citiesDto.forEach(cityDto -> {
-            City city = new City();
-            city.setName(cityDto.getName());
-            city.setPopulation(cityDto.getPopulation());
-            city.setCountry(country);
+                City city = new City();
+                city.setName(cityDto.getName());
+                city.setPopulation(cityDto.getPopulation());
+                city.setCountry(country);
 
-            cities.add(city);
-        });
+                cities.add(city);
+            });
 
         country.setCities(cities);
     }
