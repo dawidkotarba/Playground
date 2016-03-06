@@ -20,7 +20,7 @@ import java.util.Set;
 @Entity
 @Table(name = "COUNTRIES")
 @SequenceGenerator(name = "PK", sequenceName = "COUNTRIES_SEQ", allocationSize = 1)
-public class Country extends AbstractPersistableSequence {
+public class Country extends AbstractEntity {
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;

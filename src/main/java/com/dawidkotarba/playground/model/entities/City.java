@@ -1,12 +1,12 @@
 package com.dawidkotarba.playground.model.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  * Created by Dawid Kotarba on 08.02.2016.
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CITIES")
 @SequenceGenerator(name = "PK", sequenceName = "CITIES_SEQ", allocationSize = 1)
-public class City extends AbstractPersistableSequence {
+public class City extends AbstractEntity {
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;

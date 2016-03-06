@@ -11,6 +11,7 @@ CREATE SEQUENCE cities_seq INCREMENT BY 1;
 -- TABLES
 CREATE TABLE users (
   id INT NOT NULL DEFAULT nextval('users_seq') PRIMARY KEY,
+  version INT NOT NULL DEFAULT 0,
   username VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(50) NOT NULL,
   enabled  BOOLEAN     NOT NULL,
@@ -19,6 +20,7 @@ CREATE TABLE users (
 
 CREATE TABLE cities (
   id INT NOT NULL DEFAULT nextval('cities_seq') PRIMARY KEY,
+  version INT NOT NULL DEFAULT 0,
   name VARCHAR(50) NOT NULL UNIQUE,
   country INT,
   population INT
@@ -26,6 +28,7 @@ CREATE TABLE cities (
 
 CREATE TABLE countries (
   id INT NOT NULL DEFAULT nextval('countries_seq') PRIMARY KEY,
+  version INT NOT NULL DEFAULT 0,
   name       VARCHAR(50) NOT NULL UNIQUE,
   capital    INT,
   area       INT,
@@ -36,6 +39,7 @@ CREATE TABLE countries (
 
 CREATE TABLE neighbours (
   id INT NOT NULL DEFAULT nextval('neighbours_seq') PRIMARY KEY,
+  version INT NOT NULL DEFAULT 0,
   country    INT NOT NULL,
   neighbour  INT NOT NULL,
   FOREIGN KEY (country) REFERENCES countries(id),

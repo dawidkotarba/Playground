@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USERS")
 @SequenceGenerator(name = "PK", sequenceName = "USERS_SEQ", allocationSize = 1)
-public class User extends AbstractPersistableSequence {
+public class User extends AbstractEntity {
 
     @Column(name = "USERNAME", nullable = false, unique = true)
     private String username;
