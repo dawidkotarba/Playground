@@ -26,6 +26,7 @@ public class WsConfig {
     @Bean
     @Autowired
     public BeanPostProcessor wsEndpointFactoryPostProcessor(ApplicationContext applicationContext) {
+//        WsBasicAuthInterceptor basicAuthInterceptor = new WsBasicAuthInterceptor();
         BeanPostProcessor wsPostProcessor = new WsEndpointFactoryPostProcessor(applicationContext, null);
         return wsPostProcessor;
     }
