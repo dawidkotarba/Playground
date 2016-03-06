@@ -8,9 +8,6 @@ import com.dawidkotarba.playground.repository.CountryRepository;
 import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;

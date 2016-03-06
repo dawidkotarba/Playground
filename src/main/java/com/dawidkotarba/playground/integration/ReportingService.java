@@ -31,7 +31,6 @@ public class ReportingService {
 
     @ServiceActivator(inputChannel = "responseChannel")
     public void soutResponse(Message<String> message) {
-        System.out.println(message);
         log.info("Response message: {}", message);
     }
 }
