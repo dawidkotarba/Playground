@@ -1,7 +1,10 @@
-package com.dawidkotarba.playground.config;
+package com.dawidkotarba.playground.config.ws;
 
 import org.apache.cxf.transport.servlet.CXFServlet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -18,5 +21,12 @@ public class WsConfig {
         ServletRegistrationBean servlet = new ServletRegistrationBean(new CXFServlet(), "/ws/*");
         servlet.setLoadOnStartup(1);
         return servlet;
+    }
+
+    @Bean
+    @Autowired
+    public BeanPostProcessor wsEndpointFactoryPostProcessor(ApplicationContext applicationContext) {
+        BeanPostProcessor wsPostProcessor = new WsEndpointFactoryPostProcessor(applicationContext, null);
+        return wsPostProcessor;
     }
 }
