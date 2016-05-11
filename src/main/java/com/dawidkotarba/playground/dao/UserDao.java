@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Dawid Kotarba on 15.11.2015.
@@ -34,12 +35,12 @@ public class UserDao {
     private UserAssembler userAssembler;
 
     public List<UserOutDto> getAll() {
-        return userAssembler.convertToDto(userRepository.findAll());
+        return userRepository.findAll().stream().map(userAssembler.convert).collect(Collectors.toList());
     }
 
     public List<UserOutDto> getByName(String name) {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
-        return userAssembler.convertToDto(userRepository.findByUsername(name));
+        return userRepository.findByUsername(name).stream().map(userAssembler.convert).collect(Collectors.toList());
     }
 
     public void add(UserInDto userInDto) {
