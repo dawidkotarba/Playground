@@ -49,10 +49,7 @@ public class UserController {
     }
 
     private List<UserOutDto> updateResourceResults(List<UserOutDto> dtos) {
-
-        for (UserOutDto dto : dtos) {
-            dto.add(linkTo(methodOn(UserController.class).getByName(dto.getUsername())).withSelfRel());
-        }
+        dtos.forEach(dto -> dto.add(linkTo(methodOn(UserController.class).getByName(dto.getUsername())).withSelfRel()));
         return dtos;
     }
 }

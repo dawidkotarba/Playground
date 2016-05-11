@@ -43,9 +43,7 @@ public class CountryController {
     }
 
     private List<CountryDto> updateResults(List<CountryDto> dtos) {
-        for (CountryDto dto : dtos) {
-            dto.add(linkTo(methodOn(CountryController.class).getByName(dto.getName())).withSelfRel());
-        }
+        dtos.forEach(dto -> dto.add(linkTo(methodOn(CountryController.class).getByName(dto.getName())).withSelfRel()));
         return dtos;
     }
 }
