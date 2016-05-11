@@ -5,6 +5,7 @@ import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.model.entities.City;
 import com.dawidkotarba.playground.model.entities.Country;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -14,13 +15,14 @@ import java.util.Set;
 /**
  * Created by Dawid Kotarba on 01.12.2015.
  */
+@Service
 public class CountryAssembler {
 
     private CountryAssembler() {
         // intentionally left blank
     }
 
-    public static CountryDto convert(Country country) {
+    public CountryDto convert(Country country) {
         CountryDto countryDto = new CountryDto();
         BeanUtils.copyProperties(country, countryDto);
         countryDto.setCapital(assembleCapital(country.getCapital()));
@@ -30,14 +32,14 @@ public class CountryAssembler {
         return countryDto;
     }
 
-    private static CityDto assembleCapital(City capital) {
+    private CityDto assembleCapital(City capital) {
         CityDto capitalDto = new CityDto();
         capitalDto.setName(capital.getName());
         capitalDto.setPopulation(capital.getPopulation());
         return capitalDto;
     }
 
-    private static Set<String> assembleNeighbourNames(Country country) {
+    private Set<String> assembleNeighbourNames(Country country) {
         Set<String> neighboursNames = new LinkedHashSet<>();
         country.getNeighbours().forEach(neighbour ->
                 neighboursNames.add(neighbour.getName()));
@@ -45,26 +47,26 @@ public class CountryAssembler {
         return neighboursNames;
     }
 
-    private static Set<CityDto> assembleCities(Country country) {
+    private Set<CityDto> assembleCities(Country country) {
         Set<CityDto> cites = new LinkedHashSet<>();
         country.getCities().forEach(city -> {
-                CityDto cityDto = new CityDto();
-                cityDto.setName(city.getName());
-                cityDto.setPopulation(city.getPopulation());
-                cites.add(cityDto);
-            });
+            CityDto cityDto = new CityDto();
+            cityDto.setName(city.getName());
+            cityDto.setPopulation(city.getPopulation());
+            cites.add(cityDto);
+        });
 
         return cites;
     }
 
-    public static Country convert(CountryDto countryDto) {
+    public Country convert(CountryDto countryDto) {
         Country country = assembleCountry(countryDto);
         assembleCities(countryDto.getCities(), country);
 
         return country;
     }
 
-    private static Country assembleCountry(CountryDto countryDto) {
+    private Country assembleCountry(CountryDto countryDto) {
         Country country = new Country();
         country.setName(countryDto.getName());
         country.setCapital(assembleCapital(countryDto, country));
@@ -75,21 +77,21 @@ public class CountryAssembler {
         return country;
     }
 
-    private static void assembleCities(Set<CityDto> citiesDto, Country country) {
+    private void assembleCities(Set<CityDto> citiesDto, Country country) {
         Set<City> cities = new LinkedHashSet<>();
         citiesDto.forEach(cityDto -> {
-                City city = new City();
-                city.setName(cityDto.getName());
-                city.setPopulation(cityDto.getPopulation());
-                city.setCountry(country);
+            City city = new City();
+            city.setName(cityDto.getName());
+            city.setPopulation(cityDto.getPopulation());
+            city.setCountry(country);
 
-                cities.add(city);
-            });
+            cities.add(city);
+        });
 
         country.setCities(cities);
     }
 
-    private static City assembleCapital(CountryDto countryDto, Country country) {
+    private City assembleCapital(CountryDto countryDto, Country country) {
         City capital = new City();
         capital.setName(countryDto.getCapital().getName());
         capital.setPopulation(countryDto.getCapital().getPopulation());
@@ -97,7 +99,7 @@ public class CountryAssembler {
         return capital;
     }
 
-    public static List<CountryDto> convertToDto(List<Country> countries) {
+    public List<CountryDto> convertToDto(List<Country> countries) {
         List<CountryDto> result = new ArrayList<>();
         countries.forEach(country -> result.add(convert(country)));
         return result;

@@ -2,14 +2,15 @@ package com.dawidkotarba.playground.dao;
 
 import com.dawidkotarba.playground.annotations.TransactionalRepository;
 import com.dawidkotarba.playground.exceptions.NotFoundException;
+import com.dawidkotarba.playground.integration.assembler.UserAssembler;
 import com.dawidkotarba.playground.integration.dto.UserInDto;
 import com.dawidkotarba.playground.integration.dto.UserOutDto;
-import com.dawidkotarba.playground.integration.util.IntegrationHelper;
 import com.dawidkotarba.playground.model.entities.User;
 import com.dawidkotarba.playground.repository.UserRepository;
 import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -29,15 +30,16 @@ public class UserDao {
     @Resource
     private UserRepository userRepository;
 
+    @Autowired
+    private UserAssembler userAssembler;
+
     public List<UserOutDto> getAll() {
-        List<User> users = (List<User>) userRepository.findAll();
-        return IntegrationHelper.copyProperties(users, UserOutDto.class);
+        return userAssembler.convertToDto(userRepository.findAll());
     }
 
     public List<UserOutDto> getByName(String name) {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
-        List<User> result = userRepository.findByUsername(name);
-        return IntegrationHelper.copyProperties(result, UserOutDto.class);
+        return userAssembler.convertToDto(userRepository.findByUsername(name));
     }
 
     public void add(UserInDto userInDto) {

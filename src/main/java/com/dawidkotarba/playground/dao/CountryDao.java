@@ -7,7 +7,11 @@ import com.dawidkotarba.playground.model.entities.Country;
 import com.dawidkotarba.playground.repository.CountryRepository;
 import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -27,23 +31,33 @@ public class CountryDao {
     @Resource
     private CountryRepository countryRepository;
 
+    @Autowired
+    private CountryAssembler countryAssembler;
+
     public List<CountryDto> getAll() {
-        List<Country> result = (List<Country>) countryRepository.findAll();
-        return CountryAssembler.convertToDto(result);
+        List<Country> result = countryRepository.findAll();
+        return countryAssembler.convertToDto(result);
     }
 
     @Cacheable("countriesCache")
     public List<CountryDto> getByName(String name) {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
         List<Country> result = countryRepository.findByName(name);
-        return CountryAssembler.convertToDto(result);
+        return countryAssembler.convertToDto(result);
     }
 
     public void add(CountryDto countryDto) {
         Preconditions.checkNotNull(countryDto, "countryDto cannot be null");
 
-        Country country = CountryAssembler.convert(countryDto);
+        Country country = countryAssembler.convert(countryDto);
         entityManager.persist(country);
+    }
+
+    public Page<CountryDto> getAll(Pageable pageable) {
+        Page<Country> all = countryRepository.findAll(pageable);
+        List<Country> content = all.getContent();
+        List<CountryDto> countryDtos = countryAssembler.convertToDto(content);
+        return new PageImpl<>(countryDtos, pageable, countryDtos.size());
     }
 
     /*
@@ -59,7 +73,7 @@ public class CountryDao {
         TypedQuery<Country> typedQuery = entityManager.createQuery(select);
         List<Country> result = typedQuery.getResultList();
 
-        return CountryAssembler.convertToDto(result);
+        return countryAssembler.convertToDto(result);
     }
 
     @Cacheable("countriesCache")
@@ -79,14 +93,14 @@ public class CountryDao {
         TypedQuery<Country> typedQuery = entityManager.createQuery(select);
         List<Country> result = typedQuery.getResultList();
 
-        return CountryAssembler.convertToDto(result);
+        return countryAssembler.convertToDto(result);
     }
 
     // ================ example of Querydsl ================
 
       public List<CountryDto> getAll() {
         List<Country> result = new JPAQuery(entityManager).from(country).fetchAll().list(country);
-        return CountryAssembler.convertToDto(result);
+        return countryAssembler.convertToDto(result);
     }
 
     @Cacheable("countriesCache")
@@ -94,7 +108,7 @@ public class CountryDao {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
 
         List<Country> result = new JPAQuery(entityManager).from(country).where(country.name.containsIgnoreCase(name)).list(country);
-        return CountryAssembler.convertToDto(result);
+        return countryAssembler.convertToDto(result);
     }
 
      */

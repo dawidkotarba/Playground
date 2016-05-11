@@ -1,6 +1,7 @@
 package com.dawidkotarba.playground.integration.dto;
 
 import lombok.Data;
+import org.springframework.hateoas.ResourceSupport;
 
 import java.io.Serializable;
 
@@ -9,9 +10,9 @@ import java.io.Serializable;
  */
 
 @Data
-public class UserOutDto implements Serializable {
+public class UserOutDto extends ResourceSupport implements Serializable {
 
-    private int id;
+    private Long userId;
 
     private String username;
 

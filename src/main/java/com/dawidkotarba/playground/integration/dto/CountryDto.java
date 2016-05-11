@@ -1,6 +1,7 @@
 package com.dawidkotarba.playground.integration.dto;
 
 import lombok.Data;
+import org.springframework.hateoas.ResourceSupport;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -13,7 +14,7 @@ import java.util.Set;
  * Created by Dawid Kotarba on 12.11.2015.
  */
 @Data
-public class CountryDto implements Serializable {
+public class CountryDto extends ResourceSupport implements Serializable {
 
     @NotNull
     private String name;

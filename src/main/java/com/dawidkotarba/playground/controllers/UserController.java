@@ -4,12 +4,10 @@ import com.dawidkotarba.playground.integration.dto.UserInDto;
 import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import com.dawidkotarba.playground.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -31,13 +29,13 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Resource<UserOutDto>> getAll() {
-        return createResourceResults(userService.getAll());
+    public List<UserOutDto> getAll() {
+        return updateResourceResults(userService.getAll());
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Resource<UserOutDto>> getByName(@PathVariable String name) {
-        return createResourceResults(userService.getByName(name));
+    public List<UserOutDto> getByName(@PathVariable String name) {
+        return updateResourceResults(userService.getByName(name));
     }
 
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -50,14 +48,11 @@ public class UserController {
         userService.delete(name);
     }
 
-    private List<Resource<UserOutDto>> createResourceResults(List<UserOutDto> dtos) {
-        List<Resource<UserOutDto>> result = new ArrayList<>();
+    private List<UserOutDto> updateResourceResults(List<UserOutDto> dtos) {
 
         for (UserOutDto dto : dtos) {
-            Resource resource = new Resource(dto);
-            resource.add(linkTo(methodOn(UserController.class).getByName(dto.getUsername())).withSelfRel());
-            result.add(resource);
+            dto.add(linkTo(methodOn(UserController.class).getByName(dto.getUsername())).withSelfRel());
         }
-        return result;
+        return dtos;
     }
 }

@@ -3,12 +3,10 @@ package com.dawidkotarba.playground.controllers;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -30,13 +28,13 @@ public class CountryController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Resource<CountryDto>> getAll() {
-        return createResourceResults(countryService.getAll());
+    public List<CountryDto> getAll() {
+        return updateResults(countryService.getAll());
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Resource<CountryDto>> getByName(@PathVariable String name) {
-        return createResourceResults(countryService.getByName(name));
+    public List<CountryDto> getByName(@PathVariable String name) {
+        return updateResults(countryService.getByName(name));
     }
 
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -44,14 +42,10 @@ public class CountryController {
         countryService.add(countryDto);
     }
 
-    private List<Resource<CountryDto>> createResourceResults(List<CountryDto> dtos) {
-        List<Resource<CountryDto>> result = new ArrayList<>();
-
+    private List<CountryDto> updateResults(List<CountryDto> dtos) {
         for (CountryDto dto : dtos) {
-            Resource resource = new Resource(dto);
-            resource.add(linkTo(methodOn(CountryController.class).getByName(dto.getName())).withSelfRel());
-            result.add(resource);
+            dto.add(linkTo(methodOn(CountryController.class).getByName(dto.getName())).withSelfRel());
         }
-        return result;
+        return dtos;
     }
 }
