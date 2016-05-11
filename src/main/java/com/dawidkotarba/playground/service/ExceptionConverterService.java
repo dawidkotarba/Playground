@@ -20,7 +20,7 @@ import java.util.UUID;
 @Service
 public class ExceptionConverterService {
 
-    private LocalizationService localizationService;
+    private final LocalizationService localizationService;
 
     @Autowired
     public ExceptionConverterService(LocalizationService localizationService) {

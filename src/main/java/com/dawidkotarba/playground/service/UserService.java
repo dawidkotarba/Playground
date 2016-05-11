@@ -17,8 +17,12 @@ import java.util.List;
 @Transactional
 public class UserService {
 
+    private final UserDao userDao;
+
     @Autowired
-    private UserDao userDao;
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     public List<UserOutDto> getAll() {
         return userDao.getAll();

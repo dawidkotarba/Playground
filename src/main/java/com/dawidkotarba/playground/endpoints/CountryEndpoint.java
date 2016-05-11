@@ -6,6 +6,7 @@ import com.dawidkotarba.playground.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.jws.WebMethod;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -21,5 +22,15 @@ public class CountryEndpoint {
     @WebMethod
     public List<CountryDto> getAll() {
         return countryService.getAll();
+    }
+
+    @WebMethod
+    public List<CountryDto> getByName(String name) {
+        return countryService.getByName(name);
+    }
+
+    @WebMethod
+    public void add(@Valid CountryDto countryDto) {
+        countryService.add(countryDto);
     }
 }

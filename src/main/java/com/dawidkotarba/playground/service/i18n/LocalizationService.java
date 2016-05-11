@@ -12,11 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class LocalizationService {
 
-    @Autowired
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
+    private final LocalizationConfig localizationConfig;
 
     @Autowired
-    private LocalizationConfig localizationConfig;
+    public LocalizationService(MessageSource messageSource, LocalizationConfig localizationConfig) {
+        this.messageSource = messageSource;
+        this.localizationConfig = localizationConfig;
+    }
 
     public String getMessage(String code) {
         return messageSource.getMessage(code, null, localizationConfig.getDefaultLocale());
@@ -25,5 +28,4 @@ public class LocalizationService {
     public String getMessage(String code, Object[] args) {
         return messageSource.getMessage(code, args, localizationConfig.getDefaultLocale());
     }
-
 }
