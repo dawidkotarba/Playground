@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ImportResource;
  * Created by Dawid Kotarba on 06.03.2016.
  */
 @Configuration
-@ImportResource({"classpath:META-INF/cxf/cxf.xml", "classpath:META-INF/cxf/cxf-servlet.xml"})
+@ImportResource( {"classpath:META-INF/cxf/cxf.xml", "classpath:META-INF/cxf/cxf-servlet.xml"})
 public class WsConfig {
 
     @Bean

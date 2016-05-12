@@ -17,8 +17,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @IntegrationTest
 @TestExecutionListeners(inheritListeners = false, listeners = {
-        DependencyInjectionTestExecutionListener.class,
-        DirtiesContextTestExecutionListener.class})
+    DependencyInjectionTestExecutionListener.class,
+    DirtiesContextTestExecutionListener.class})
 public abstract class AbstractTestNgConfiguration extends AbstractTransactionalTestNGSpringContextTests {
 
     protected AbstractTestNgConfiguration() {

@@ -60,10 +60,10 @@ public class WsBasicAuthInterceptor extends SoapHeaderInterceptor {
         outMessage.put(Message.RESPONSE_CODE, responseCode);
 
         Map<String, List<String>> responseHeaders =
-                (Map<String, List<String>>) message.get(Message.PROTOCOL_HEADERS);
+            (Map<String, List<String>>) message.get(Message.PROTOCOL_HEADERS);
         if (responseHeaders != null) {
-            responseHeaders.put("WWW-Authenticate", Arrays.asList(new String[]{"Basic realm=realm"}));
-            responseHeaders.put("Content-Length", Arrays.asList(new String[]{"0"}));
+            responseHeaders.put("WWW-Authenticate", Arrays.asList(new String[] {"Basic realm=realm"}));
+            responseHeaders.put("Content-Length", Arrays.asList(new String[] {"0"}));
         }
         message.getInterceptorChain().abort();
         try {

@@ -19,10 +19,10 @@ public abstract class AbstractStoryConfiguration extends JUnitStory {
     @Override
     public Configuration configuration() {
         return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(this.getClass()))
-                .useStoryPathResolver(new CasePreservingResolver())
-                .usePendingStepStrategy(new FailingUponPendingStep())
-                .useStoryReporterBuilder(new StoryReporterBuilder()
-                        .withDefaultFormats().withFormats(Format.CONSOLE, Format.TXT));
+            .useStoryPathResolver(new CasePreservingResolver())
+            .usePendingStepStrategy(new FailingUponPendingStep())
+            .useStoryReporterBuilder(new StoryReporterBuilder()
+                .withDefaultFormats().withFormats(Format.CONSOLE, Format.TXT));
     }
 
     @Override

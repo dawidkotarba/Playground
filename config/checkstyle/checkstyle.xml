@@ -25,24 +25,19 @@
         <property name="message" value="System.out.println() is not allowed"/>
     </module>
 
-    <module name="RegexpSingleline">
-        <property name="format" value="org.drools.core.util.StringUtils"/>
-        <property name="message" value="StringUtils from Drools is used."/>
-    </module>
-
     <module name="FileLength">
         <property name="max" value="2000"/>
     </module>
 
-    <module name="FileTabCharacter" />
+    <module name="FileTabCharacter"/>
 
     <module name="TreeWalker">
         <module name="FileContentsHolder"/>
         <module name="EmptyBlock"/>
-        <module name="LeftCurly" />
-        <module name="RightCurly" />
-        <module name="NeedBraces" />
-        <module name="AvoidNestedBlocks" />
+        <module name="LeftCurly"/>
+        <module name="RightCurly"/>
+        <module name="NeedBraces"/>
+        <module name="AvoidNestedBlocks"/>
 
         <!-- Coding -->
         <module name="EqualsHashCode"/>
@@ -60,18 +55,18 @@
         <module name="SimplifyBooleanReturn"/>
         <module name="IllegalThrows"/>
         <module name="ModifiedControlVariable"/>
-        <module name="UnnecessaryParentheses" />
+        <module name="UnnecessaryParentheses"/>
         <module name="HiddenField">
             <property name="tokens" value="VARIABLE_DEF"/>
         </module>
         <module name="NestedTryDepth">
-             <property name="max" value="1"/>
+            <property name="max" value="1"/>
         </module>
         <module name="NestedIfDepth">
-             <property name="max" value="2"/>
+            <property name="max" value="2"/>
         </module>
         <module name="NestedForDepth">
-             <property name="max" value="2"/>
+            <property name="max" value="2"/>
         </module>
 
         <!-- Class design -->
@@ -80,8 +75,8 @@
         </module>
         <module name="InnerTypeLast"/>
         <module name="VisibilityModifier">
-            <property name="packageAllowed" value="true" />
-			<property name="protectedAllowed" value="true" />
+            <property name="packageAllowed" value="true"/>
+            <property name="protectedAllowed" value="true"/>
         </module>
 
         <!-- Annotations -->
@@ -91,8 +86,8 @@
         </module>
 
         <!-- Imports -->
-        <module name="RedundantImport" />
-        <module name="UnusedImports" />
+        <module name="RedundantImport"/>
+        <module name="UnusedImports"/>
 
         <module name="AvoidStarImport">
             <property name="allowStaticMemberImports" value="true"/>
@@ -105,14 +100,14 @@
         <!-- Metrics -->
 
         <!-- Misc -->
-        <module name="UpperEll" />
-        <module name="ArrayTypeStyle" />
-        <module name="OuterTypeFilename" />
-        <module name="Indentation" />
+        <module name="UpperEll"/>
+        <module name="ArrayTypeStyle"/>
+        <module name="OuterTypeFilename"/>
+        <module name="Indentation"/>
 
         <!-- Modifiers -->
-        <module name="ModifierOrder" />
-        <module name="RedundantModifier" />
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
 
         <!-- Naming -->
         <module name="AbstractClassName"/>
@@ -143,16 +138,16 @@
         </module>
 
         <!-- Whitespaces -->
-        <module name="MethodParamPad" />
-        <module name="WhitespaceAround" />
-        <module name="WhitespaceAfter" />
+        <module name="MethodParamPad"/>
+        <module name="WhitespaceAround"/>
+        <module name="WhitespaceAfter"/>
         <module name="NoWhitespaceAfter">
             <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
         </module>
-        <module name="NoWhitespaceBefore" />
-        <module name="OperatorWrap" />
-        <module name="ParenPad" />
-        <module name="TypecastParenPad" />
+        <module name="NoWhitespaceBefore"/>
+        <module name="OperatorWrap"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
 
         <module name="MissingSwitchDefault"/>
         <module name="FallThrough"/>

@@ -65,7 +65,7 @@ public class ExceptionConverterService {
         List<ValidationError> validationErrors = new ArrayList<>();
 
         bindingResult.getFieldErrors().forEach(fieldError ->
-                        validationErrors.add(new ValidationError(fieldError.getField(), fieldError.getDefaultMessage()))
+                validationErrors.add(new ValidationError(fieldError.getField(), fieldError.getDefaultMessage()))
         );
 
         return validationErrors;

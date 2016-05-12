@@ -43,10 +43,10 @@ public class DatabaseConfig {
 
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         EmbeddedDatabase db = builder
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript("db_create.sql")
-                .addScript("db_data_init.sql")
-                .build();
+            .setType(EmbeddedDatabaseType.H2)
+            .addScript("db_create.sql")
+            .addScript("db_data_init.sql")
+            .build();
         return db;
     }
 

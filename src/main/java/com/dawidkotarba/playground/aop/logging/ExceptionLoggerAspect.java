@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 public class ExceptionLoggerAspect {
 
     @Pointcut("within(com.dawidkotarba.playground.dao..*)"
-            + "|| within(com.dawidkotarba.playground.service..*)"
-            + "|| within(com.dawidkotarba.playground.controllers..*)")
+        + "|| within(com.dawidkotarba.playground.service..*)"
+        + "|| within(com.dawidkotarba.playground.controllers..*)")
     public void loggingPointcut() {
         // intentionally left blank
     }
@@ -26,7 +26,7 @@ public class ExceptionLoggerAspect {
     @AfterThrowing(pointcut = "loggingPointcut()", throwing = "e")
     public void logException(JoinPoint joinPoint, Throwable e) {
         log.error("Exception in {}.{}() with cause = {} and exception {}", joinPoint.getSignature().getDeclaringTypeName(),
-                joinPoint.getSignature().getName(), e.getCause(), e);
+            joinPoint.getSignature().getName(), e.getCause(), e);
     }
 
 }

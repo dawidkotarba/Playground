@@ -25,17 +25,17 @@ public class SecurityConfigProd extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/db").access("hasRole('ROLE_ADMIN')");
+            .antMatchers("/db").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests()
-                .antMatchers("/users/*").access("hasRole('ROLE_ADMIN')");
+            .antMatchers("/users/*").access("hasRole('ROLE_ADMIN')");
 
         http
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .and()
-                .httpBasic();
+            .authorizeRequests()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .and()
+            .httpBasic();
 
         // h2 console csrf disable
         http.csrf().disable();
@@ -45,7 +45,7 @@ public class SecurityConfigProd extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource).
-                usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?").authoritiesByUsernameQuery(
-                "SELECT username, role FROM users WHERE username=?");
+            usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?").authoritiesByUsernameQuery(
+            "SELECT username, role FROM users WHERE username=?");
     }
 }

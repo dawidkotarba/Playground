@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class PopulationDensityCalculatorStories extends AbstractStoryConfiguration {
     @Override
     public Object[] stepInstances() {
-        return new Object[]{new PopulationDensityCalculatorSteps()};
+        return new Object[] {new PopulationDensityCalculatorSteps()};
     }
 
     @Test

@@ -3,11 +3,7 @@ package com.dawidkotarba.playground.annotations;
 import org.springframework.stereotype.Component;
 
 import javax.jws.WebService;
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * Created by Dawid Kotarba on 06.03.2016.

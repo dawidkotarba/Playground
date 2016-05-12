@@ -1,15 +1,6 @@
 package com.dawidkotarba.playground.model.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.JoinTable;
+import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -43,8 +34,8 @@ public class Country extends AbstractEntity {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "NEIGHBOURS",
-            joinColumns = {@JoinColumn(name = "COUNTRY")},
-            inverseJoinColumns = {@JoinColumn(name = "NEIGHBOUR")})
+        joinColumns = {@JoinColumn(name = "COUNTRY")},
+        inverseJoinColumns = {@JoinColumn(name = "NEIGHBOUR")})
     private Set<Country> neighbours = new LinkedHashSet<>();
 
     public String getName() {

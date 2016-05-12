@@ -3,8 +3,8 @@ package bdd.com.dawidkotarba.steps;
 import com.dawidkotarba.playground.service.populationDensityCalculator.PopulationDensityCalculationInputData;
 import com.dawidkotarba.playground.service.populationDensityCalculator.PopulationDensityCalculatorService;
 import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.Named;
+import org.jbehave.core.annotations.Then;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;

@@ -42,7 +42,7 @@ public class CountryAssembler {
     private Set<String> assembleNeighbourNames(Country country) {
         Set<String> neighboursNames = new LinkedHashSet<>();
         country.getNeighbours().forEach(neighbour ->
-                neighboursNames.add(neighbour.getName()));
+            neighboursNames.add(neighbour.getName()));
 
         return neighboursNames;
     }
