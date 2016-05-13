@@ -9,14 +9,12 @@ import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Dawid Kotarba on 12.11.2015.
@@ -35,29 +33,20 @@ public class CountryDao {
     private CountryAssembler countryAssembler;
 
     public List<CountryDto> getAll() {
-        List<Country> result = countryRepository.findAll();
-        return countryAssembler.convertToDto(result);
+        return countryRepository.findAll().stream().map(countryAssembler.convertCountryToDto()).collect(Collectors.toList());
     }
 
     @Cacheable("countriesCache")
     public List<CountryDto> getByName(String name) {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
-        List<Country> result = countryRepository.findByName(name);
-        return countryAssembler.convertToDto(result);
+        return countryRepository.findByName(name).stream().map(countryAssembler.convertCountryToDto()).collect(Collectors.toList());
     }
 
     public void add(CountryDto countryDto) {
         Preconditions.checkNotNull(countryDto, "countryDto cannot be null");
 
-        Country country = countryAssembler.convert(countryDto);
+        Country country = countryAssembler.transformCountryDtoToEntity().apply(countryDto);
         entityManager.persist(country);
-    }
-
-    public Page<CountryDto> getAll(Pageable pageable) {
-        Page<Country> all = countryRepository.findAll(pageable);
-        List<Country> content = all.getContent();
-        List<CountryDto> countryDtos = countryAssembler.convertToDto(content);
-        return new PageImpl<>(countryDtos, pageable, countryDtos.size());
     }
 
     /*

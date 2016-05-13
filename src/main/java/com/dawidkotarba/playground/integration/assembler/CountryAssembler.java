@@ -7,10 +7,9 @@ import com.dawidkotarba.playground.model.entities.Country;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by Dawid Kotarba on 01.12.2015.
@@ -18,77 +17,58 @@ import java.util.Set;
 @Service
 public class CountryAssembler {
 
-    private CountryAssembler() {
-        // intentionally left blank
-    }
-
-    public CountryDto convert(Country country) {
-        CountryDto countryDto = new CountryDto();
-        BeanUtils.copyProperties(country, countryDto);
-        countryDto.setCapital(assembleCapital(country.getCapital()));
-        countryDto.setCities(assembleCities(country));
-        countryDto.setNeighbourCountriesNames(assembleNeighbourNames(country));
-
-        return countryDto;
-    }
-
-    private CityDto assembleCapital(City capital) {
-        CityDto capitalDto = new CityDto();
-        capitalDto.setName(capital.getName());
-        capitalDto.setPopulation(capital.getPopulation());
-        return capitalDto;
-    }
-
     private Set<String> assembleNeighbourNames(Country country) {
-        Set<String> neighboursNames = new LinkedHashSet<>();
-        country.getNeighbours().forEach(neighbour ->
-            neighboursNames.add(neighbour.getName()));
-
-        return neighboursNames;
+        return country.getNeighbours().stream().map(n -> n.getName()).collect(Collectors.toSet());
     }
 
     private Set<CityDto> assembleCities(Country country) {
-        Set<CityDto> cites = new LinkedHashSet<>();
-        country.getCities().forEach(city -> {
+        return country.getCities().stream().map(convertCityToDto()).collect(Collectors.toSet());
+    }
+
+    private Function<City, CityDto> convertCityToDto() {
+        return city -> {
             CityDto cityDto = new CityDto();
             cityDto.setName(city.getName());
             cityDto.setPopulation(city.getPopulation());
-            cites.add(cityDto);
-        });
-
-        return cites;
+            return cityDto;
+        };
     }
 
-    public Country convert(CountryDto countryDto) {
-        Country country = assembleCountry(countryDto);
-        assembleCities(countryDto.getCities(), country);
+    public Function<Country, CountryDto> convertCountryToDto() {
+        return country -> {
+            CountryDto countryDto = new CountryDto();
+            BeanUtils.copyProperties(country, countryDto);
+            countryDto.setCapital(convertCityToDto().apply(country.getCapital()));
+            countryDto.setCities(assembleCities(country));
+            countryDto.setNeighbourCountriesNames(assembleNeighbourNames(country));
 
-        return country;
+            return countryDto;
+        };
     }
 
-    private Country assembleCountry(CountryDto countryDto) {
-        Country country = new Country();
-        country.setName(countryDto.getName());
-        country.setCapital(assembleCapital(countryDto, country));
-        country.setArea(countryDto.getArea());
-        country.setCurrency(countryDto.getCurrency());
-        country.setPopulation(countryDto.getPopulation());
-
-        return country;
-    }
-
-    private void assembleCities(Set<CityDto> citiesDto, Country country) {
-        Set<City> cities = new LinkedHashSet<>();
-        citiesDto.forEach(cityDto -> {
+    private Function<CityDto, City> transformCityDtoToEntity() {
+        return cityDto -> {
             City city = new City();
             city.setName(cityDto.getName());
             city.setPopulation(cityDto.getPopulation());
-            city.setCountry(country);
+            return city;
+        };
+    }
 
-            cities.add(city);
-        });
+    public Function<CountryDto, Country> transformCountryDtoToEntity() {
+        return countryDto -> {
+            Country country = new Country();
+            country.setName(countryDto.getName());
+            country.setCapital(assembleCapital(countryDto, country));
+            country.setArea(countryDto.getArea());
+            country.setCurrency(countryDto.getCurrency());
+            country.setPopulation(countryDto.getPopulation());
 
-        country.setCities(cities);
+            Set<City> cities = countryDto.getCities().stream().map(transformCityDtoToEntity()).collect(Collectors.toSet());
+            country.setCities(cities);
+
+            return country;
+        };
     }
 
     private City assembleCapital(CountryDto countryDto, Country country) {
@@ -97,11 +77,5 @@ public class CountryAssembler {
         capital.setPopulation(countryDto.getCapital().getPopulation());
         capital.setCountry(country);
         return capital;
-    }
-
-    public List<CountryDto> convertToDto(List<Country> countries) {
-        List<CountryDto> result = new ArrayList<>();
-        countries.forEach(country -> result.add(convert(country)));
-        return result;
     }
 }

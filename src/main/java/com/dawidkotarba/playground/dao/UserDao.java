@@ -35,12 +35,12 @@ public class UserDao {
     private UserAssembler userAssembler;
 
     public List<UserOutDto> getAll() {
-        return userRepository.findAll().stream().map(userAssembler.convert).collect(Collectors.toList());
+        return userRepository.findAll().stream().map(userAssembler.convert()).collect(Collectors.toList());
     }
 
     public List<UserOutDto> getByName(String name) {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
-        return userRepository.findByUsername(name).stream().map(userAssembler.convert).collect(Collectors.toList());
+        return userRepository.findByUsername(name).stream().map(userAssembler.convert()).collect(Collectors.toList());
     }
 
     public void add(UserInDto userInDto) {

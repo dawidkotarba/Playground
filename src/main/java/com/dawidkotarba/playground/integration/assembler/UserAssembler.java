@@ -13,12 +13,15 @@ import java.util.function.Function;
 @Service
 public class UserAssembler {
 
-    public Function<User, UserOutDto> convert = user -> {
-        UserOutDto outDto = new UserOutDto();
-        outDto.setUserId(user.getId());
-        outDto.setUsername(user.getUsername());
-        outDto.setEnabled(user.isEnabled());
-        outDto.setRole(user.getRole());
-        return outDto;
-    };
+    public Function<User, UserOutDto> convert() {
+        return user -> {
+            UserOutDto outDto = new UserOutDto();
+            outDto.setUserId(user.getId());
+            outDto.setUsername(user.getUsername());
+            outDto.setEnabled(user.isEnabled());
+            outDto.setRole(user.getRole());
+            return outDto;
+        };
+
+    }
 }
