@@ -1,24 +1,21 @@
-package unit.com.dawidkotarba.service;
+package unit.com.dawidkotarba.service
 
-import com.dawidkotarba.playground.dao.CountryDao;
-import com.dawidkotarba.playground.integration.dto.CountryDto;
-import com.dawidkotarba.playground.service.CountryService;
-import org.mockito.*;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import com.dawidkotarba.playground.dao.CountryDao
+import com.dawidkotarba.playground.integration.dto.CountryDto
+import com.dawidkotarba.playground.service.CountryService
+import org.mockito.*
+import org.testng.annotations.BeforeTest
+import org.testng.annotations.Test
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
+import static org.hamcrest.CoreMatchers.*
+import static org.hamcrest.MatcherAssert.assertThat
+import static org.mockito.Matchers.any
+import static org.mockito.Mockito.*
 
 /**
- * Created by Dawid Kotarba on 18.11.2015.
+ * Created by Dawid Kotarba on 16.05.2016.
  */
-public class CountryServiceTest {
+class CountryServiceTest {
 
     @InjectMocks
     private CountryService underTest;
