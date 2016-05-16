@@ -2,8 +2,8 @@ package com.dawidkotarba.playground.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
 
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -12,7 +12,7 @@ import javax.persistence.Query;
  * Created by Dawid Kotarba on 16.01.2016.
  */
 
-@Service
+@Named
 @Slf4j
 public class HeartBeatService {
 

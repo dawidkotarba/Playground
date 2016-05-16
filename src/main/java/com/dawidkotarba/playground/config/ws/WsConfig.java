@@ -1,13 +1,14 @@
 package com.dawidkotarba.playground.config.ws;
 
 import org.apache.cxf.transport.servlet.CXFServlet;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+
+import javax.inject.Inject;
 
 /**
  * Created by Dawid Kotarba on 06.03.2016.
@@ -24,7 +25,7 @@ public class WsConfig {
     }
 
     @Bean
-    @Autowired
+    @Inject
     public BeanPostProcessor wsEndpointFactoryPostProcessor(ApplicationContext applicationContext) {
 //        WsBasicAuthInterceptor basicAuthInterceptor = new WsBasicAuthInterceptor();
         BeanPostProcessor wsPostProcessor = new WsEndpointFactoryPostProcessor(applicationContext, null);

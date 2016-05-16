@@ -3,10 +3,10 @@ package integration.com.dawidkotarba.dao;
 import com.dawidkotarba.playground.dao.CountryDao;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import integration.com.dawidkotarba.AbstractTestNgConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.testng.annotations.Test;
 
+import javax.inject.Inject;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.hasSize;
  */
 public class CountryDaoTest extends AbstractTestNgConfiguration {
 
-    @Autowired
+    @Inject
     private CountryDao underTest;
 
     @Test

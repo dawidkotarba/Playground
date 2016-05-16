@@ -4,10 +4,10 @@ import com.dawidkotarba.playground.dao.UserDao;
 import com.dawidkotarba.playground.integration.dto.UserInDto;
 import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import integration.com.dawidkotarba.AbstractTestNgConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.testng.annotations.Test;
 
+import javax.inject.Inject;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,7 +21,7 @@ import static org.hamcrest.Matchers.hasSize;
  */
 public class UserDaoTest extends AbstractTestNgConfiguration {
 
-    @Autowired
+    @Inject
     private UserDao underTest;
 
     @Test

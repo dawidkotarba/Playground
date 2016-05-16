@@ -5,10 +5,10 @@ import com.dawidkotarba.playground.exceptions.AbstractApplicationRuntimeExceptio
 import com.dawidkotarba.playground.integration.exceptions.ExceptionResponse;
 import com.dawidkotarba.playground.integration.exceptions.ValidationError;
 import com.dawidkotarba.playground.service.i18n.LocalizationService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -17,12 +17,12 @@ import java.util.UUID;
  * Created by Dawid Kotarba on 14.11.2015.
  */
 
-@Service
+@Named
 public class ExceptionConverterService {
 
     private final LocalizationService localizationService;
 
-    @Autowired
+    @Inject
     public ExceptionConverterService(LocalizationService localizationService) {
         this.localizationService = localizationService;
     }

@@ -1,7 +1,6 @@
 package com.dawidkotarba.playground.config;
 
 import org.h2.server.web.WebServlet;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +20,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -57,7 +57,7 @@ public class DatabaseConfig {
         return registrationBean;
     }
 
-    @Autowired
+    @Inject
     @Bean
     public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
 

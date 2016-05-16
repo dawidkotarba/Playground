@@ -1,6 +1,5 @@
 package com.dawidkotarba.playground.dao;
 
-import com.dawidkotarba.playground.annotations.TransactionalRepository;
 import com.dawidkotarba.playground.exceptions.NotFoundException;
 import com.dawidkotarba.playground.integration.assembler.UserAssembler;
 import com.dawidkotarba.playground.integration.dto.UserInDto;
@@ -10,9 +9,12 @@ import com.dawidkotarba.playground.repository.UserRepository;
 import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -22,7 +24,8 @@ import java.util.stream.Collectors;
  * Created by Dawid Kotarba on 15.11.2015.
  */
 
-@TransactionalRepository
+@Named
+@Transactional(propagation = Propagation.MANDATORY)
 public class UserDao {
 
     @PersistenceContext
@@ -31,7 +34,7 @@ public class UserDao {
     @Resource
     private UserRepository userRepository;
 
-    @Autowired
+    @Inject
     private UserAssembler userAssembler;
 
     public List<UserOutDto> getAll() {

@@ -1,14 +1,10 @@
 package com.dawidkotarba.playground.config;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Created by Dawid Kotarba on 12.11.2015.
  */
-@Configuration
-@ComponentScan("com.dawidkotarba.playground")
-@EnableConfigurationProperties
+@SpringBootApplication
 public class GeneralConfig {
 }

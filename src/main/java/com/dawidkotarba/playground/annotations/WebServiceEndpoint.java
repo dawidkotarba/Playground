@@ -1,7 +1,6 @@
 package com.dawidkotarba.playground.annotations;
 
-import org.springframework.stereotype.Component;
-
+import javax.inject.Named;
 import javax.jws.WebService;
 import java.lang.annotation.*;
 
@@ -9,7 +8,7 @@ import java.lang.annotation.*;
  * Created by Dawid Kotarba on 06.03.2016.
  */
 
-@Component
+@Named
 @WebService
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

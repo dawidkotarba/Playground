@@ -3,10 +3,10 @@ package com.dawidkotarba.playground.controllers;
 import com.dawidkotarba.playground.integration.dto.UserInDto;
 import com.dawidkotarba.playground.integration.dto.UserOutDto;
 import com.dawidkotarba.playground.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @Autowired
+    @Inject
     public UserController(UserService userService) {
         this.userService = userService;
     }

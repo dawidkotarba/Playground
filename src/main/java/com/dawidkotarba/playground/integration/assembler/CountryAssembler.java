@@ -5,8 +5,8 @@ import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.model.entities.City;
 import com.dawidkotarba.playground.model.entities.Country;
 import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Service;
 
+import javax.inject.Named;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Dawid Kotarba on 01.12.2015.
  */
-@Service
+@Named
 public class CountryAssembler {
 
     private Set<String> assembleNeighbourNames(Country country) {

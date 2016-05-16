@@ -5,14 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
+
+import javax.inject.Named;
 
 
 /**
  * Created by Dawid Kotarba on 13.11.2015.
  */
 @Aspect
-@Component
+@Named
 @Slf4j
 public class RepositoryLoggerAspect {
 

@@ -6,15 +6,16 @@ package integration.com.dawidkotarba.service.i18n;
 
 import com.dawidkotarba.playground.service.i18n.LocalizationService;
 import integration.com.dawidkotarba.AbstractTestNgConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
+
+import javax.inject.Inject;
 
 import static org.testng.Assert.assertEquals;
 
 
 public class LocalizationServiceTest extends AbstractTestNgConfiguration {
 
-    @Autowired
+    @Inject
     private LocalizationService underTest;
 
     @Test

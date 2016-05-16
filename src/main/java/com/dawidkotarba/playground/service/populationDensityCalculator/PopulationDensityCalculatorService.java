@@ -1,13 +1,14 @@
 package com.dawidkotarba.playground.service.populationDensityCalculator;
 
 import com.google.common.base.Preconditions;
-import org.springframework.stereotype.Service;
+
+import javax.inject.Named;
 
 /**
  * Created by Dawid Kotarba on 19.12.2015.
  */
 
-@Service
+@Named
 public class PopulationDensityCalculatorService {
 
     public int calculate(PopulationDensityCalculationInputData inputData) {

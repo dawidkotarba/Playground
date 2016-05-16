@@ -3,11 +3,11 @@ package com.dawidkotarba.playground.integration;
 import com.dawidkotarba.playground.model.entities.Country;
 import com.dawidkotarba.playground.repository.CountryRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.MessageEndpoint;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.Message;
 
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class ReportingService {
 
-    @Autowired
+    @Inject
     private CountryRepository countryRepository;
 
     @ServiceActivator(inputChannel = "reportingServiceChannel", outputChannel = "responseChannel")

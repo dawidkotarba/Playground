@@ -1,16 +1,18 @@
 package com.dawidkotarba.playground.dao;
 
-import com.dawidkotarba.playground.annotations.TransactionalRepository;
 import com.dawidkotarba.playground.integration.assembler.CountryAssembler;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.model.entities.Country;
 import com.dawidkotarba.playground.repository.CountryRepository;
 import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -20,7 +22,8 @@ import java.util.stream.Collectors;
  * Created by Dawid Kotarba on 12.11.2015.
  */
 
-@TransactionalRepository
+@Named
+@Transactional(propagation = Propagation.MANDATORY)
 public class CountryDao {
 
     @PersistenceContext
@@ -29,7 +32,7 @@ public class CountryDao {
     @Resource
     private CountryRepository countryRepository;
 
-    @Autowired
+    @Inject
     private CountryAssembler countryAssembler;
 
     public List<CountryDto> getAll() {

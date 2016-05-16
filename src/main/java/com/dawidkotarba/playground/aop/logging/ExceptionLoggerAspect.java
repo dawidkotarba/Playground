@@ -5,14 +5,15 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
+
+import javax.inject.Named;
 
 /**
  * Created by Dawid Kotarba on 20.11.2015.
  */
 
 @Aspect
-@Component
+@Named
 @Slf4j
 public class ExceptionLoggerAspect {
 

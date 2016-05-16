@@ -4,7 +4,6 @@ import com.dawidkotarba.playground.exceptions.InternalErrorException;
 import com.dawidkotarba.playground.exceptions.NotFoundException;
 import com.dawidkotarba.playground.integration.exceptions.ExceptionResponse;
 import com.dawidkotarba.playground.service.ExceptionConverterService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import javax.inject.Inject;
 
 /**
  * This advice catches all exceptions thrown by backend
@@ -26,7 +27,7 @@ public class ExceptionControllerAdvice {
 
     private final ExceptionConverterService exceptionConverterService;
 
-    @Autowired
+    @Inject
     public ExceptionControllerAdvice(ExceptionConverterService exceptionConverterService) {
         this.exceptionConverterService = exceptionConverterService;
     }

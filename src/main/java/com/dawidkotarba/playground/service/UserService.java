@@ -3,9 +3,9 @@ package com.dawidkotarba.playground.service;
 import com.dawidkotarba.playground.dao.UserDao;
 import com.dawidkotarba.playground.integration.dto.UserInDto;
 import com.dawidkotarba.playground.integration.dto.UserOutDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -13,13 +13,13 @@ import java.util.List;
  * Created by Dawid Kotarba on 15.11.2015.
  */
 
-@Service
+@Named
 @Transactional
 public class UserService {
 
     private final UserDao userDao;
 
-    @Autowired
+    @Inject
     public UserService(UserDao userDao) {
         this.userDao = userDao;
     }
