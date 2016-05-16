@@ -47,7 +47,7 @@ public class UserServiceTest {
 
         // then
         assertThat(result, is(notNullValue()));
-        verify(userDao, Mockito.times(1)).getAll();
+        verify(userDao).getAll();
         verifyNoMoreInteractions(userDao);
     }
 
@@ -62,7 +62,7 @@ public class UserServiceTest {
 
         // then
         assertThat(result, is(notNullValue()));
-        verify(userDao, Mockito.times(1)).getByName(anyString());
+        verify(userDao).getByName(anyString());
 
         verify(userDao).getByName(nameCaptor.capture());
         assertThat(nameCaptor.getValue(), is(equalTo(testName)));
@@ -76,7 +76,7 @@ public class UserServiceTest {
         underTest.add(new UserInDto());
 
         // then
-        verify(userDao, Mockito.times(1)).add(any());
+        verify(userDao).add(any());
         verifyNoMoreInteractions(userDao);
     }
 }

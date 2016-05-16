@@ -45,7 +45,7 @@ public class CountryServiceTest {
 
         // then
         assertThat(result, is(notNullValue()));
-        verify(countryDao, Mockito.times(1)).getAll();
+        verify(countryDao).getAll();
         verifyNoMoreInteractions(countryDao);
     }
 
@@ -60,7 +60,7 @@ public class CountryServiceTest {
 
         // then
         assertThat(result, is(notNullValue()));
-        verify(countryDao, Mockito.times(1)).getByName(testName);
+        verify(countryDao).getByName(testName);
 
         verify(countryDao).getByName(nameCaptor.capture());
         assertThat(nameCaptor.getValue(), is(equalTo(testName)));
@@ -74,7 +74,7 @@ public class CountryServiceTest {
         underTest.add(new CountryDto());
 
         // then
-        verify(countryDao, Mockito.times(1)).add(any());
+        verify(countryDao).add(any());
         verifyNoMoreInteractions(countryDao);
     }
 }
