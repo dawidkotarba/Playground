@@ -30,5 +30,5 @@ Admin credentials: admin : admin
 - Travis: https://travis-ci.org/dawidkotarba/Playground
 
 ### Docker:
-- Run: docker run dawko/springplayground
-- Build: docker build -t spring/playground .
+- Run: docker run dawidkotarba/playground_spring
+- Build: docker build -t dawidkotarba/playground_spring .
