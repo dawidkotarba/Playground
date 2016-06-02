@@ -1,5 +1,5 @@
 # Spring Playground
-    This is just a simple example of Spring-based app (with AngularJS in future). Dev still in progress.
+    This is just a simple example of Spring-based app. Dev still in progress.
 
 [![Build Status](https://travis-ci.org/dawidkotarba/PlaygroundSpring.svg?branch=master)](https://travis-ci.org/dawidkotarba/PlaygroundSpring) [![Coverage Status](https://coveralls.io/repos/dawidkotarba/Playground/badge.svg?branch=master&service=github)](https://coveralls.io/github/dawidkotarba/Playground?branch=master)
 
@@ -11,12 +11,6 @@
 - server: embedded Tomcat (Spring Boot app)
 - tests: TestNG, Mockito, Hamcrest, JBehave
 - doc: SwaggerUI
-
-#### Front-end (todo all):
-- build: bower + gulp/grunt
-- js: AngularJS
-- css: Bootstrap + Less?
-- tests: Karma, Jasmine + Sinon + Chai
 
 #### Buld & run:
 From main folder:
@@ -34,3 +28,6 @@ Admin credentials: admin : admin
 
 #### Links:
 - Travis: https://travis-ci.org/dawidkotarba/Playground
+
+### Docker:
+- run "docker build -t spring/playground ." to build the image.
