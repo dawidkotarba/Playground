@@ -1,5 +1,5 @@
 # Spring Playground
-    This is just a simple example of Spring-based app (with AngularJS in future). Dev still in progress.
+    This is just a simple example of Spring-based app. Dev still in progress.
 
 [![Build Status](https://travis-ci.org/dawidkotarba/PlaygroundSpring.svg?branch=master)](https://travis-ci.org/dawidkotarba/PlaygroundSpring) [![Coverage Status](https://coveralls.io/repos/dawidkotarba/Playground/badge.svg?branch=master&service=github)](https://coveralls.io/github/dawidkotarba/Playground?branch=master)
 
@@ -12,25 +12,23 @@
 - tests: TestNG, Mockito, Hamcrest, JBehave
 - doc: SwaggerUI
 
-#### Front-end (todo all):
-- build: bower + gulp/grunt
-- js: AngularJS
-- css: Bootstrap + Less?
-- tests: Karma, Jasmine + Sinon + Chai
-
 #### Buld & run:
 From main folder:
 - gradlew build
-- java -jar build\libs\playground-0.1.0.jar
+- java -jar -Dspring.profiles.active=DEV build\libs\playground-0.1.0.jar
 
 All logs will be stored in "/opt/apps/webdata/weblogs" folder.
 
 #### Pages (provided Tomcat runs on default 8080):
-- localhost:8080/login --> default login page
-- localhost:8080/db --> H2 console (url: jdbc:h2:mem:testdb, user: sa, pwd: <blank>)
-- localhost:8080/swagger-ui.html --> SwaggerUI
+- localhost:8080/login => default login page
+- localhost:8080/db => H2 console (url: jdbc:h2:mem:testdb, user: sa, pwd: <blank>)
+- localhost:8080/swagger-ui.html => SwaggerUI
 
 Admin credentials: admin : admin
 
 #### Links:
 - Travis: https://travis-ci.org/dawidkotarba/Playground
+
+### Docker:
+- Run: docker run dawidkotarba/playground_spring
+- Build: docker build -t dawidkotarba/playground_spring .
