@@ -46,6 +46,11 @@ CREATE TABLE neighbours (
   FOREIGN KEY (neighbour) REFERENCES countries(id)
 );
 
+-- INDEXES
+CREATE INDEX users_index on users(id);
+CREATE INDEX cities_index on cities(id, name);
+CREATE INDEX countries_index on countries(id, name);
+
 -- VIEWS
 CREATE VIEW POPULATION_DENSITY AS
 SELECT ct.name country, ct.population / ct.area population_density
