@@ -15,7 +15,7 @@
 #### Buld & run:
 From main folder:
 - gradlew build
-- java -jar build\libs\playground-0.1.0.jar
+- java -jar -Dspring.profiles.active=DEV build\libs\playground-0.1.0.jar
 
 All logs will be stored in "/opt/apps/webdata/weblogs" folder.
 
