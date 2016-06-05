@@ -13,9 +13,7 @@
 - doc: SwaggerUI
 
 #### Buld & run:
-From main folder:
-- gradlew build
-- java -jar -Dspring.profiles.active=DEV build\libs\playground-0.1.0.jar
+- sh build_and_run.sh from main folder
 
 All logs will be stored in "/opt/apps/webdata/weblogs" folder.
 
