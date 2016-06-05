@@ -8,4 +8,4 @@
 /generated_tests
 src/main/webapp/.tmp
 src/main/webapp/node_modules
-src/main/webapp/bower_components
+src/main/webapp/app/libs
