@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name angular2App
+ * @name PlaygroundSpringApp
  * @description
- * # angular2App
+ * # PlaygroundSpringApp
  *
  * Main module of the application.
  */
 angular
-  .module('angular2App', [
+  .module('PlaygroundSpringApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

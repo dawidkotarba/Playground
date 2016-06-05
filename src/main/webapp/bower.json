@@ -1,5 +1,5 @@
 {
-  "name": "angular2",
+  "name": "PlaygroundSpring",
   "version": "0.0.0",
   "dependencies": {
     "angular": "^1.4.0",
@@ -15,7 +15,7 @@
     "angular-mocks": "^1.4.0"
   },
   "appPath": "app",
-  "moduleName": "angular2App",
+  "moduleName": "PlaygroundSpringApp",
   "overrides": {
     "bootstrap": {
       "main": [

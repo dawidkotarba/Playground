@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name angular2App.controller:AboutCtrl
+ * @name PlaygroundSpringApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the angular2App
+ * Controller of the PlaygroundSpringApp
  */
-angular.module('angular2App')
+angular.module('PlaygroundSpringApp')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
