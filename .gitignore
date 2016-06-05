@@ -1,6 +1,11 @@
 /build
+/target
 /.gradle
 /.idea
 /*.iml
 /generated
 /generated_tests
+/node_modules
+/dist
+/.tmp
+/bower_components
