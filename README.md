@@ -26,6 +26,7 @@ Admin credentials: admin : admin
 
 #### Links:
 - Travis: https://travis-ci.org/dawidkotarba/Playground
+- Coveralls: https://coveralls.io/github/dawidkotarba/Playground?branch=master
 
 ### Docker:
 - Run: docker run dawidkotarba/playground_spring
