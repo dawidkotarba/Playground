@@ -1,12 +1,15 @@
 /.idea
 /*.iml
 /.gradle
-/src/main/webapp/.gradle
+
 /build
 /target
 /dist
+
 /generated
 /generated_tests
+src/main/webapp/.gradle
+src/main/webapp/dist
 src/main/webapp/.tmp
 src/main/webapp/node_modules
 src/main/webapp/app/libs
