@@ -1,12 +1,8 @@
 (function () {
     "use strict";
 
-    angular.module("countriesModule").controller("browseCountriesController", function (browseCountriesService) {
+    angular.module("countriesModule").controller("browseCountriesController", function (browseCountriesService, ngTableParams) {
         var vm = this;
-
-        vm.testFunction = function () {
-            return browseCountriesService.getAllCountries();
-        }
+        vm.allCountries = browseCountriesService.getAllCountries();
     });
-
 })();

@@ -9,6 +9,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="libs/ng-table/dist/ng-table.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -51,12 +52,8 @@
 </div>
 
 <div ng-controller="browseCountriesController as vm">
-    <li ng-repeat="data in vm.testFunction()">
-        {{ data }}
-    </li>
+Countries data: {{vm.allCountries}}
 </div>
-
-
 
 <div class="footer">
     <div class="container">
@@ -75,6 +72,7 @@
 <script src="libs/angular-route/angular-route.js"></script>
 <script src="libs/angular-sanitize/angular-sanitize.js"></script>
 <script src="libs/angular-touch/angular-touch.js"></script>
+<script src="libs/ng-table/dist/ng-table.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -82,15 +80,11 @@
 <script src="scripts/modules/countries/countriesModule.js"></script>
 <script src="scripts/modules/users/usersModule.js"></script>
 <script src="scripts/app.js"></script>
-<<<<<<< HEAD
 <script src="scripts/modules/countries/service/feedCountriesService.js"></script>
 <script src="scripts/modules/countries/service/browseCountriesService.js"></script>
 <script src="scripts/modules/countries/controller/browseCountriesController.js"></script>
 <script src="scripts/modules/users/service/feedUsersService.js"></script>
 <script src="scripts/modules/users/service/browseUsersService.js"></script>
-=======
-<script src="scripts/modules/countries/controller/browseCountriesController.js"></script>
->>>>>>> 8cdd383d5332d19f9a06928771a45aedf78ecae0
 <script src="scripts/modules/users/controller/browseUsersController.js"></script>
 <!-- endbuild -->
 </body>

@@ -10,7 +10,8 @@
             'ngSanitize',
             'ngTouch',
             'countriesModule',
-            'usersModule'
+            'usersModule',
+            'ngTable'
         ])
         .config(function ($routeProvider) {
             $routeProvider

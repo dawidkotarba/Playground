@@ -5,14 +5,12 @@
         var vm = this;
 
         vm.getAll = function () {
-            var result = null;
+            var result = [];
             $http.get("/countries").success(function (response) {
-                console.log(response.data);
-                result = response.data;
-            }).error(function () {
-                alert("error");
+                result.push(response);
+            }).error(function (response) {
+                console.log(response);
             });
-
             return result;
         }
     });
