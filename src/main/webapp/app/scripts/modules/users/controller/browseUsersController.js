@@ -1,12 +1,9 @@
 (function () {
     "use strict";
 
-    angular.module("usersModule").controller("browseUsersController", function () {
+    angular.module("usersModule").controller("browseUsersController", function (browseUsersService) {
         var vm = this;
-
-        vm.testFunction = function () {
-            return "test:)";
-        }
+        vm.all = browseUsersService.getAll();
     });
 
 })();
